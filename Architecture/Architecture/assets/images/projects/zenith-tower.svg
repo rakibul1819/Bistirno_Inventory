@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#18181B"/>
+      <stop offset="100%" stop-color="#3F3F46"/>
+    </linearGradient>
+    <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#71717A" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="url(#skyGrad)"/>
+  <rect width="600" height="400" fill="url(#gridPattern)"/>
+  <!-- Tower Silhouette -->
+  <polygon points="220,380 220,120 300,60 380,120 380,380" fill="#27272A" stroke="#52525B" stroke-width="2"/>
+  <line x1="300" y1="60" x2="300" y2="380" stroke="#71717A" stroke-width="2"/>
+  <!-- Windows -->
+  <g fill="#A1A1AA" opacity="0.6">
+    <rect x="240" y="140" width="20" height="15" rx="2"/>
+    <rect x="270" y="140" width="20" height="15" rx="2"/>
+    <rect x="310" y="140" width="20" height="15" rx="2"/>
+    <rect x="340" y="140" width="20" height="15" rx="2"/>
+    <rect x="240" y="170" width="20" height="15" rx="2"/>
+    <rect x="270" y="170" width="20" height="15" rx="2"/>
+    <rect x="310" y="170" width="20" height="15" rx="2"/>
+    <rect x="340" y="170" width="20" height="15" rx="2"/>
+    <rect x="240" y="200" width="20" height="15" rx="2"/>
+    <rect x="270" y="200" width="20" height="15" rx="2"/>
+    <rect x="310" y="200" width="20" height="15" rx="2"/>
+    <rect x="340" y="200" width="20" height="15" rx="2"/>
+  </g>
+  <text x="30" y="50" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#FFFFFF">Zenith Atrium Commercial Tower</text>
+  <text x="30" y="75" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="14" fill="#A1A1AA">ArchStudio Pro Elevation & BIM Render</text>
+</svg>

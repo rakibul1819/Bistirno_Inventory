@@ -1,0 +1,17 @@
+/* Architecture Portfolio Showcase Styles */
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.portfolio-card img {
+  transition: transform 0.7s ease;
+}
+.portfolio-card:hover img {
+  transform: scale(1.08);
+}
+.portfolio-overlay {
+  background: linear-gradient(to top, rgba(9, 13, 22, 0.95) 0%, rgba(9, 13, 22, 0.4) 60%, transparent 100%);
+}
+

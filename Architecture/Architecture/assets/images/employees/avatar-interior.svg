@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="30" fill="#3F3F46"/>
+  <circle cx="60" cy="46" r="22" fill="#E4E4E7"/>
+  <path d="M26 102c0-18.778 15.222-34 34-34s34 15.222 34 34" fill="#E4E4E7"/>
+  <circle cx="60" cy="45" r="16" fill="#A1A1AA"/>
+  <text x="60" y="52" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16" fill="#FFFFFF" text-anchor="middle">SL</text>
+</svg>

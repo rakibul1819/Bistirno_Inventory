@@ -1,0 +1,341 @@
+/* ==========================================================================
+   Bistirno - ArchStudio Pro | Base & Global Stylesheet
+   Design Specification: Minimalist Architectural Light/Zinc Theme
+   Strictly matched with reference visual specification & contrast protection
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+
+  /* 1. Backgrounds (Light Theme) */
+  --bg-main: #F4F4F5;        /* প্রধান ব্যাকগ্রাউন্ড (হালকা ধূসর/অফ-হোয়াইট) */
+  --bg-sidebar: #F9FAFB;     /* সাইডবার (প্রায় সাদা) */
+  --bg-card: #FFFFFF;        /* কার্ড ব্যাকগ্রাউন্ড (সাদা) */
+  --bg-card-subtle: #F9FAFB; /* সাবটল কার্ড / রো ব্যাকগ্রাউন্ড */
+  --border-color: #E4E4E7;   /* সূক্ষ্ম বর্ডার */
+
+  /* 2. Typography (Light Theme) */
+  --text-heading: #18181B;   /* প্রধান হেডিং ও সংখ্যা ("Dashboard", "6", "9") */
+  --text-sub: #71717A;       /* সাব-টেক্সট ("Stock, projects and...", "awaiting approval") */
+  --text-alert: #DC2626;     /* অ্যালার্ট বা ওয়ার্নিং টেক্সট ("Needs reorder") */
+
+  /* 3. Buttons & Elements (Light Theme) */
+  --tab-active: #18181B;     /* ট্যাব বাটন Active (কালো/গাঢ় ধূসর) */
+  --tab-inactive: #F4F4F5;   /* ট্যাব বাটন Inactive */
+  --icon-bg: #F4F4F5;        /* টপবার আইকন ব্যাকগ্রাউন্ড */
+  --admin-avatar-bg: #9CA3AF;/* অ্যাডমিন প্রোফাইল আইকন (ধূসর) */
+  
+  --primary-amber: #f59e0b;
+}
+
+/* Light Color Architectural Specification (Always Active as requested) */
+:root,
+html,
+body,
+html.dark,
+body.dark,
+.dark {
+  /* 1. Backgrounds (Light Theme) */
+  --bg-main: #F4F4F5 !important;        /* প্রধান ব্যাকগ্রাউন্ড (হালকা ধূসর/অফ-হোয়াইট) */
+  --bg-sidebar: #F9FAFB !important;     /* সাইডবার (প্রায় সাদা) */
+  --bg-card: #FFFFFF !important;        /* কার্ড ব্যাকগ্রাউন্ড (সাদা) */
+  --bg-card-subtle: #F9FAFB !important; /* সাবটল কার্ড / রো ব্যাকগ্রাউন্ড */
+  --border-color: #E4E4E7 !important;   /* সূক্ষ্ম বর্ডার */
+
+  /* 2. Typography (Light Theme) */
+  --text-heading: #18181B !important;   /* প্রধান হেডিং ও সংখ্যা ("Dashboard", "6", "9") */
+  --text-sub: #71717A !important;       /* সাব-টেক্সট ("Stock, projects and...", "awaiting approval") */
+  --text-alert: #DC2626 !important;     /* অ্যালার্ট বা ওয়ার্নিং টেক্সট ("Needs reorder") */
+
+  /* 3. Buttons & Elements (Light Theme) */
+  --tab-active: #18181B !important;     /* ট্যাব বাটন Active (কালো/গাঢ় ধূসর) */
+  --tab-inactive: #F4F4F5 !important;   /* ট্যাব বাটন Inactive */
+  --icon-bg: #F4F4F5 !important;        /* টপবার আইকন ব্যাকগ্রাউন্ড */
+  --admin-avatar-bg: #9CA3AF !important;/* অ্যাডমিন প্রোফাইল আইকন (ধূসর) */
+  
+  --primary-amber: #f59e0b;
+}
+
+/* Ensure background color is ALWAYS light across the entire UI */
+html, body, .architect-grid-bg {
+  background-color: #F4F4F5 !important;
+  background-image: radial-gradient(#E4E4E7 1.4px, transparent 1.4px) !important;
+  background-size: 22px 22px !important;
+  color: #18181B !important;
+}
+
+/* Ensure sidebar is ALWAYS light */
+.desktop-sidebar,
+.mobile-sidebar-panel {
+  background-color: #F9FAFB !important;
+  border-right: 1px solid #E4E4E7 !important;
+}
+
+/* Ensure header is ALWAYS white */
+header {
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #E4E4E7 !important;
+}
+
+/* Ensure all cards are ALWAYS white */
+.card-base,
+.kpi-card,
+.project-card,
+.employee-card,
+.customer-card,
+.modal-card,
+.metric-card,
+.stock-movement-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E4E4E7 !important;
+  border-radius: 24px;
+  color: #18181B !important;
+}
+
+/* Override any dark:bg- utilities to guarantee light backgrounds */
+[class*="dark:bg-"] {
+  background-color: #FFFFFF !important;
+}
+input[class*="dark:bg-"], select[class*="dark:bg-"], textarea[class*="dark:bg-"] {
+  background-color: #F9FAFB !important;
+}
+[class*="dark:text-white"], [class*="dark:text-slate-100"], [class*="dark:text-[#FAFAFA]"] {
+  color: #18181B !important;
+}
+[class*="dark:border-"] {
+  border-color: #E4E4E7 !important;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main) !important;
+  color: var(--text-heading) !important;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* প্রধান ব্যাকগ্রাউন্ড: Dot Grid Pattern */
+.architect-grid-bg {
+  background-color: var(--bg-main) !important;
+  background-image: radial-gradient(var(--border-color) 1.4px, transparent 1.4px) !important;
+  background-size: 22px 22px !important;
+}
+
+/* Sidebar Custom Styling */
+.desktop-sidebar,
+.mobile-sidebar-panel {
+  background-color: var(--bg-sidebar) !important;
+  border-color: var(--border-color) !important;
+}
+
+header {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Card Styling - Always bound to CSS variables to guarantee contrast */
+.card-base,
+.kpi-card,
+.project-card,
+.employee-card,
+.customer-card,
+.modal-card,
+.metric-card,
+.stock-movement-card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 24px;
+  color: var(--text-heading);
+}
+
+/* Typography Classes */
+.text-heading {
+  color: var(--text-heading) !important;
+}
+
+.text-sub {
+  color: var(--text-sub) !important;
+}
+
+.text-alert {
+  color: var(--text-alert) !important;
+}
+
+/* Form Controls - Guaranteeing text is never same color as background */
+input, select, textarea {
+  color: var(--text-heading) !important;
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #A1A1AA !important;
+}
+
+option {
+  background-color: var(--bg-card) !important;
+  color: var(--text-heading) !important;
+}
+
+/* Time Tabs (Week, Month, Year) */
+.time-tab {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: transparent;
+  color: var(--text-sub);
+}
+
+.time-tab:hover {
+  background-color: var(--border-color);
+  color: var(--text-heading);
+}
+
+.time-tab.active {
+  background-color: var(--tab-active) !important;
+  color: var(--bg-card) !important;
+  font-weight: 700;
+}
+
+html.dark .time-tab.active {
+  background-color: #18181B !important;
+  color: #FFFFFF !important;
+}
+
+/* Topbar Icon Buttons */
+.topbar-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background-color: var(--icon-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-heading) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.topbar-icon-btn:hover {
+  background-color: var(--border-color) !important;
+}
+
+.topbar-icon-btn.border-dark {
+  border: 1.5px solid var(--text-heading) !important;
+}
+
+/* Admin Profile Avatar (A) */
+.admin-avatar-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background-color: var(--admin-avatar-bg) !important;
+  color: #FFFFFF !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+  font-family: var(--font-display);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D4D8;
+  border-radius: 9999px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #3F3F46;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A1A1AA;
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #printable-area,
+  #printable-area * {
+    visibility: visible;
+  }
+
+  #printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 24px;
+    background: #ffffff !important;
+    color: #18181B !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Ultra-smooth view transition */
+.view-fade-in {
+  animation: viewFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes viewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ultra-smooth view transition */
+.view-fade-in {
+  animation: viewFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes viewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

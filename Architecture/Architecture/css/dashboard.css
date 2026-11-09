@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Bistirno - ArchStudio Pro | Dashboard Specific Styles
+   Strictly aligned with reference visual layout & contrast protection
+   ========================================================================== */
+
+/* Welcome Banner (Always Dark Card in both themes for architectural contrast) */
+.dashboard-welcome-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background-color: #18181B !important;
+  color: #FFFFFF !important;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+
+.dashboard-welcome-banner h1,
+.dashboard-welcome-banner h2,
+.dashboard-welcome-banner h3 {
+  color: #FFFFFF !important;
+}
+
+.dashboard-welcome-banner p {
+  color: #A1A1AA !important;
+}
+
+.dashboard-welcome-circle {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.circle-1 {
+  width: 280px;
+  height: 280px;
+  background-color: rgba(39, 39, 42, 0.45);
+  right: -40px;
+  top: -40px;
+}
+.circle-2 {
+  width: 200px;
+  height: 200px;
+  background-color: rgba(39, 39, 42, 0.25);
+  right: 120px;
+  bottom: -60px;
+}
+
+/* Metric Display Cards */
+.metric-card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.metric-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.metric-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background-color: var(--bg-main) !important;
+  color: var(--text-heading) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-label {
+  font-size: 13px;
+  color: var(--text-sub) !important;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-heading) !important;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.metric-trend-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #16A34A;
+}
+
+.metric-trend-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-alert) !important;
+}
+
+.metric-trend-gray {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-sub) !important;
+}
+
+/* Stock Movement Card */
+.stock-movement-card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* Stock movement icon placeholder as seen in image */
+.stock-movement-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background-color: var(--bg-main) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-sub) !important;
+  flex-shrink: 0;
+}
+
+/* Stock Movement Row */
+.stock-movement-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background-color: var(--bg-sidebar) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-heading) !important;
+  transition: all 0.15s ease;
+}
+
+.stock-movement-item:hover {
+  background-color: var(--bg-main) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Low Stock Alert Item */
+.stock-alert-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-heading) !important;
+  transition: all 0.15s ease;
+}
+
+.stock-alert-row:hover {
+  background-color: rgba(220, 38, 38, 0.06) !important;
+  border-color: rgba(220, 38, 38, 0.3) !important;
+}

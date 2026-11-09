@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#022c22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#064e3b;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" />
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  
+  <!-- Commercial Tower Structure -->
+  <rect x="250" y="140" width="300" height="340" fill="rgba(255,255,255,0.03)" stroke="rgba(245,158,11,0.5)" stroke-width="2" />
+  <line x1="350" y1="140" x2="350" y2="480" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+  <line x1="450" y1="140" x2="450" y2="480" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+  
+  <!-- Horizontal floor slabs -->
+  <line x1="250" y1="200" x2="550" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <line x1="250" y1="260" x2="550" y2="260" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <line x1="250" y1="320" x2="550" y2="320" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <line x1="250" y1="380" x2="550" y2="380" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <line x1="250" y1="440" x2="550" y2="440" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  
+  <text x="60" y="80" font-family="'Space Grotesk', sans-serif" font-size="24" font-weight="700" fill="#ffffff">Zenith Commercial Tower</text>
+  <text x="60" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#6ee7b7">Sustainable Mass-Timber High Rise · Structural Analysis</text>
+</svg>
+

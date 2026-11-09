@@ -1,0 +1,1388 @@
+/**
+ * Bistirno - ArchStudio Pro
+ * Default Seed & Demo Data Store
+ */
+
+const SEED_DATA = {
+  companySettings: {
+    name: "Bistirno ArchStudio Pro",
+    tagline: "Architecture, Interior Architecture & Design Consultancy",
+    email: "contact@bistirno-arch.com",
+    phone: "+1 (555) 782-9000",
+    address: "Level 14, Apex Tower, 450 Design District, New York, NY 10001",
+    license: "AIA-NY-2024-9981",
+    currency: "$",
+    timezone: "America/New_York",
+    darkMode: true,
+    adminProfile: {
+      name: "Alexander Vance, AIA",
+      role: "Principal Architect & Managing Partner",
+      email: "alex.vance@bistirno-arch.com",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+      phone: "+1 (555) 234-5671",
+      bio: "Registered Architect with 16+ years directing high-end residential, hospitality, and civic architecture projects."
+    }
+  },
+
+  employees: [
+    {
+      id: "ARCH-101",
+      name: "Alexander Vance",
+      designation: "Principal Architect",
+      department: "Architecture",
+      email: "alex.vance@bistirno-arch.com",
+      phone: "+1 (555) 234-5671",
+      joiningDate: "2021-03-15",
+      basicSalary: 9500,
+      bonus: 1200,
+      deductions: 500,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 22, late: 1, absent: 0, leave: 1 },
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "INT-102",
+      name: "Sophia Lorenzi",
+      designation: "Senior Interior Designer",
+      department: "Interior Design",
+      email: "sophia.l@bistirno-arch.com",
+      phone: "+1 (555) 345-6782",
+      joiningDate: "2022-01-10",
+      basicSalary: 7800,
+      bonus: 800,
+      deductions: 350,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 23, late: 0, absent: 0, leave: 1 },
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "STR-103",
+      name: "Marcus Thorne",
+      designation: "Lead Structural Engineer & BIM",
+      department: "Structural",
+      email: "marcus.t@bistirno-arch.com",
+      phone: "+1 (555) 456-7893",
+      joiningDate: "2022-06-01",
+      basicSalary: 7400,
+      bonus: 700,
+      deductions: 400,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 21, late: 2, absent: 0, leave: 1 },
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "VIS-104",
+      name: "Elena Rostova",
+      designation: "Senior 3D Visualizer",
+      department: "Architecture",
+      email: "elena.r@bistirno-arch.com",
+      phone: "+1 (555) 567-8904",
+      joiningDate: "2023-02-14",
+      basicSalary: 6400,
+      bonus: 600,
+      deductions: 250,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 24, late: 0, absent: 0, leave: 0 },
+      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "ARCH-105",
+      name: "David Kim",
+      designation: "Project Architect",
+      department: "Architecture",
+      email: "david.kim@bistirno-arch.com",
+      phone: "+1 (555) 678-9015",
+      joiningDate: "2021-08-20",
+      basicSalary: 8200,
+      bonus: 900,
+      deductions: 450,
+      status: "Active",
+      attendance: "Late",
+      attendanceHistory: { present: 20, late: 3, absent: 1, leave: 0 },
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "INT-106",
+      name: "Aria Montgomery",
+      designation: "FF&E & Material Specialist",
+      department: "Interior Design",
+      email: "aria.m@bistirno-arch.com",
+      phone: "+1 (555) 789-0126",
+      joiningDate: "2023-05-18",
+      basicSalary: 5900,
+      bonus: 450,
+      deductions: 200,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 23, late: 1, absent: 0, leave: 0 },
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "SITE-107",
+      name: "Liam O'Connor",
+      designation: "Site Execution Supervisor",
+      department: "Site Supervision",
+      email: "liam.oc@bistirno-arch.com",
+      phone: "+1 (555) 890-1237",
+      joiningDate: "2022-11-05",
+      basicSalary: 6500,
+      bonus: 500,
+      deductions: 300,
+      status: "Active",
+      attendance: "On Leave",
+      attendanceHistory: { present: 19, late: 1, absent: 0, leave: 4 },
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "EST-108",
+      name: "Nadia Al-Mansoor",
+      designation: "Senior Cost Estimator",
+      department: "Estimation",
+      email: "nadia.m@bistirno-arch.com",
+      phone: "+1 (555) 901-2348",
+      joiningDate: "2023-08-11",
+      basicSalary: 6200,
+      bonus: 400,
+      deductions: 250,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 22, late: 2, absent: 0, leave: 0 },
+      avatar: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "LAN-109",
+      name: "Julian Sterling",
+      designation: "Landscape Architect",
+      department: "Architecture",
+      email: "julian.s@bistirno-arch.com",
+      phone: "+1 (555) 012-3459",
+      joiningDate: "2024-01-08",
+      basicSalary: 5100,
+      bonus: 300,
+      deductions: 180,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 24, late: 0, absent: 0, leave: 0 },
+      avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "ADM-110",
+      name: "Claire Beauchamp",
+      designation: "Studio Operations & HR",
+      department: "Admin & HR",
+      email: "claire.b@bistirno-arch.com",
+      phone: "+1 (555) 123-4560",
+      joiningDate: "2021-05-01",
+      basicSalary: 5600,
+      bonus: 400,
+      deductions: 200,
+      status: "Active",
+      attendance: "Present",
+      attendanceHistory: { present: 24, late: 0, absent: 0, leave: 0 },
+      avatar: "https://images.unsplash.com/photo-1534751516642-a171edd2521d?auto=format&fit=crop&w=256&q=80"
+    }
+  ],
+
+  customers: [
+    {
+      id: "CUST-001",
+      name: "Henry Kensington",
+      company: "Elysium Developments Ltd",
+      email: "henry@elysiumdev.com",
+      phone: "+1 (555) 892-1100",
+      address: "740 Park Ave, Suite 2100, New York, NY",
+      status: "VIP",
+      totalSpent: 3800000,
+      projectIds: ["PRJ-2024-01", "PRJ-2024-07"],
+      communications: [
+        { date: "2024-10-28", type: "Meeting", note: "Discussed Phase 2 landscape integration for Waterfront Promenade." },
+        { date: "2024-09-15", type: "Call", note: "Approved structural variations for Montauk Glass Pavilion." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "CUST-002",
+      name: "Dr. Arthur & Vivienne Pendelton",
+      company: "Private Residence",
+      email: "arthur.pendelton@medtrust.org",
+      phone: "+1 (555) 431-7722",
+      address: "12 Whispering Pines Way, Greenwich, CT",
+      status: "Active Client",
+      totalSpent: 2400000,
+      projectIds: ["PRJ-2024-02", "PRJ-2024-08"],
+      communications: [
+        { date: "2024-10-30", type: "Site Visit", note: "Walkthrough of customized master bath Italian marble installation." },
+        { date: "2024-08-10", type: "Email", note: "Sent updated electrical layout drawings for Komorebi Villa." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "CUST-003",
+      name: "Marcus Brody",
+      company: "Zenith Financial Capital",
+      email: "facilities@zenithcap.com",
+      phone: "+1 (555) 902-3344",
+      address: "Zenith Tower B, Chicago, IL",
+      status: "VIP",
+      totalSpent: 4200000,
+      projectIds: ["PRJ-2024-03"],
+      communications: [
+        { date: "2024-10-22", type: "Presentation", note: "Executive boardroom acoustic ceiling mockup presented and approved." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "CUST-004",
+      name: "Clara Simmons",
+      company: "The Botanica Hospitality Group",
+      email: "partners@botanicahotels.com",
+      phone: "+1 (555) 612-4455",
+      address: "88 Ocean Drive, Miami Beach, FL",
+      status: "Active Client",
+      totalSpent: 1600000,
+      projectIds: ["PRJ-2024-04"],
+      communications: [
+        { date: "2024-11-02", type: "Call", note: "Confirmed lighting fixture procurement from Atelier Brassworks." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "CUST-005",
+      name: "Soren & Maya Lindqvist",
+      company: "Lindqvist Creative Studio",
+      email: "soren@lindqvist-design.se",
+      phone: "+1 (555) 321-9988",
+      address: "54 Cascade Ridge, Aspen, CO",
+      status: "Past Client",
+      totalSpent: 850000,
+      projectIds: ["PRJ-2024-05"],
+      communications: [
+        { date: "2024-06-20", type: "Handover", note: "Final key handover and warranty package delivered. 5-star review received." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "CUST-006",
+      name: "Devon Vance",
+      company: "NovaCore Tech Innovations",
+      email: "workspace@novacore.io",
+      phone: "+1 (555) 777-1234",
+      address: "Silicon Slopes Center, Salt Lake City, UT",
+      status: "Past Client",
+      totalSpent: 3100000,
+      projectIds: ["PRJ-2024-06"],
+      communications: [
+        { date: "2024-03-28", type: "Closure", note: "LEED Gold Certification plaque delivered and installed." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "CUST-007",
+      name: "Valeria Rossi",
+      company: "Rossi Luxury Estates",
+      email: "valeria@rossiestates.com",
+      phone: "+1 (555) 991-0022",
+      address: "Sunset Boulevard, Los Angeles, CA",
+      status: "Lead",
+      totalSpent: 0,
+      projectIds: [],
+      communications: [
+        { date: "2024-11-05", type: "Initial Consultation", note: "Client interested in a 12,000 sq.ft modern brutalist hillside villa." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "CUST-008",
+      name: "Alistair Finch",
+      company: "Harborview Luxury Residences",
+      email: "inquiries@harborviewluxury.com",
+      phone: "+1 (555) 843-2211",
+      address: "Port District Marina, Boston, MA",
+      status: "Lead",
+      totalSpent: 0,
+      projectIds: [],
+      communications: [
+        { date: "2024-10-18", type: "RFP Received", note: "Sent preliminary portfolio deck and fee matrix." }
+      ],
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80"
+    }
+  ],
+
+  projects: [
+    {
+      id: "PRJ-2024-01",
+      name: "The Glass Pavilion - Minimalist Villa",
+      category: "Residential Architecture",
+      client: "Henry Kensington",
+      clientCompany: "Elysium Developments Ltd",
+      budget: 1850000,
+      spent: 1420000,
+      location: "Montauk, Long Island, NY",
+      startDate: "2024-02-15",
+      endDate: "2024-12-20",
+      status: "Ongoing",
+      progress: 78,
+      lead: "Alexander Vance",
+      description: "A cantilevered oceanfront residence defined by expansive floor-to-ceiling ultra-clear glazing, polished concrete slabs, and a floating sustainable timber terrace.",
+      milestones: [
+        { title: "Topographical Survey & Concept Brief", completed: true },
+        { title: "Schematic Architectural Drawings & BIM", completed: true },
+        { title: "Coastal Zoning & Environmental Permitting", completed: true },
+        { title: "Superstructure & Glazing Installation", completed: true },
+        { title: "Interior Millwork & Smart Home Systems", completed: false },
+        { title: "Final Inspection & Client Handover", completed: false }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      id: "PRJ-2024-02",
+      name: "Greenwich Stone & Timber Estate",
+      category: "Residential Architecture",
+      client: "Dr. Arthur & Vivienne Pendelton",
+      clientCompany: "Private Residence",
+      budget: 2400000,
+      spent: 2150000,
+      location: "Greenwich, CT",
+      startDate: "2023-09-01",
+      endDate: "2024-11-30",
+      status: "Ongoing",
+      progress: 92,
+      lead: "David Kim",
+      description: "A harmonious integration of local Connecticut fieldstone, blackened steel accents, and reclaimed white oak framing surrounded by preserved woodland canopy.",
+      milestones: [
+        { title: "Site Excavation & Foundation Works", completed: true },
+        { title: "Timber Truss Superstructure", completed: true },
+        { title: "Exterior Masonry & Roofing", completed: true },
+        { title: "Custom Kitchen & Bath Marble Cladding", completed: true },
+        { title: "Acoustic Tuning & Smart Lighting", completed: false }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      id: "PRJ-2024-03",
+      name: "Zenith Tower Executive HQ",
+      category: "Commercial Architecture",
+      client: "Marcus Brody",
+      clientCompany: "Zenith Financial Capital",
+      budget: 4200000,
+      spent: 1720000,
+      location: "Chicago Loop, IL",
+      startDate: "2024-04-10",
+      endDate: "2025-06-30",
+      status: "Ongoing",
+      progress: 45,
+      lead: "Alexander Vance",
+      description: "A 3-floor high-performance corporate workplace featuring curved glass atriums, sound-absorbing timber battens, and executive trading floors with panoramic skyline views.",
+      milestones: [
+        { title: "Spatial Workplace Strategy & Programming", completed: true },
+        { title: "MEP Engineering & Fire Code Approval", completed: true },
+        { title: "Demolition & Structural Framework", completed: true },
+        { title: "Atrium Spiral Staircase Construction", completed: false },
+        { title: "Executive Suites & Boardroom AV Fitting", completed: false }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      id: "PRJ-2024-04",
+      name: "Aura Wellness Resort & Spa",
+      category: "Interior Design Projects",
+      client: "Clara Simmons",
+      clientCompany: "The Botanica Hospitality Group",
+      budget: 1600000,
+      spent: 1050000,
+      location: "Sedona, AZ",
+      startDate: "2024-01-15",
+      endDate: "2024-12-15",
+      status: "Ongoing",
+      progress: 68,
+      lead: "Sophia Lorenzi",
+      description: "Earthy, grounding interior design utilizing rammed earth plaster, warm limestone soaking tubs, ambient indirect illumination, and bespoke walnut furniture.",
+      milestones: [
+        { title: "Sensory Concept Palette & Moodboards", completed: true },
+        { title: "Custom FF&E Sourcing & Prototyping", completed: true },
+        { title: "Thermal Spa Plumbing & Hydro Installations", completed: true },
+        { title: "Lighting Controls & Acoustic Paneling", completed: false }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      id: "PRJ-2024-05",
+      name: "Nordic Haven Alpine Penthouse",
+      category: "Interior Design Projects",
+      client: "Soren & Maya Lindqvist",
+      clientCompany: "Lindqvist Creative Studio",
+      budget: 850000,
+      spent: 830000,
+      location: "Aspen, CO",
+      startDate: "2023-11-01",
+      endDate: "2024-06-15",
+      status: "Completed",
+      progress: 100,
+      lead: "Sophia Lorenzi",
+      description: "Scandinavian minimalist interior design with bespoke fluted oak cabinetry, custom steel fireplace, textured bouclé textiles, and museum-grade art displays.",
+      milestones: [
+        { title: "Design Concept & 3D Visuals", completed: true },
+        { title: "Joinery & Custom Millwork Fabrication", completed: true },
+        { title: "Imported Finishes & Hearth Masonry", completed: true },
+        { title: "Staging, Photography & Handover", completed: true }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      id: "PRJ-2024-06",
+      name: "NovaCore Biophilic Tech Campus",
+      category: "Modern Building Designs",
+      client: "Devon Vance",
+      clientCompany: "NovaCore Tech Innovations",
+      budget: 3100000,
+      spent: 3050000,
+      location: "Salt Lake City, UT",
+      startDate: "2023-01-10",
+      endDate: "2024-03-25",
+      status: "Completed",
+      progress: 100,
+      lead: "Marcus Thorne",
+      description: "Award-winning sustainable research facility incorporating internal rooftop gardens, solar-adaptive kinetic façade louvers, and cross-laminated mass timber.",
+      milestones: [
+        { title: "Mass Timber Structural Assembly", completed: true },
+        { title: "Solar Dynamic Facade Installation", completed: true },
+        { title: "Living Green Wall & Irrigation", completed: true },
+        { title: "LEED Gold Commissioning & Launch", completed: true }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      id: "PRJ-2024-07",
+      name: "The Waterfront Pavilion & Promenade",
+      category: "Exterior Design Projects",
+      client: "Henry Kensington",
+      clientCompany: "Elysium Developments Ltd",
+      budget: 1950000,
+      spent: 240000,
+      location: "Battery Park, New York, NY",
+      startDate: "2024-09-01",
+      endDate: "2025-08-15",
+      status: "Ongoing",
+      progress: 18,
+      lead: "Julian Sterling",
+      description: "Public-private architectural waterfront promenade featuring organic concrete canopies, marine-grade brass railings, tidal landscaping, and public art amphitheater.",
+      milestones: [
+        { title: "Marine Structural Geotechnical Analysis", completed: true },
+        { title: "Municipal Pier Safety & Approvals", completed: false },
+        { title: "Piling & Concrete Canopy Pouring", completed: false }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      id: "PRJ-2024-08",
+      name: "Komorebi Forest Contemporary Villa",
+      category: "Modern Building Designs",
+      client: "Dr. Arthur & Vivienne Pendelton",
+      clientCompany: "Private Residence",
+      budget: 2200000,
+      spent: 180000,
+      location: "Berkshires, MA",
+      startDate: "2024-10-01",
+      endDate: "2025-10-30",
+      status: "Pending",
+      progress: 8,
+      lead: "Alexander Vance",
+      description: "Japanese-inspired modernist estate elevated on steel pilings to preserve native woodland topography, featuring internal moss gardens and Shou Sugi Ban burnt cedar.",
+      milestones: [
+        { title: "Topographical Analysis & Solar Mapping", completed: true },
+        { title: "Schematic Client Review", completed: false }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80"
+      ]
+    }
+  ],
+
+  salaries: [
+    {
+      id: "SAL-2024-1001",
+      employeeId: "ARCH-101",
+      employeeName: "Alexander Vance",
+      designation: "Principal Architect",
+      department: "Architecture",
+      month: "October 2024",
+      basicSalary: 9500,
+      bonus: 1200,
+      deductions: 500,
+      netSalary: 10200,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Principal partner monthly draw and executive quarterly performance incentive."
+    },
+    {
+      id: "SAL-2024-1002",
+      employeeId: "INT-102",
+      employeeName: "Sophia Lorenzi",
+      designation: "Senior Interior Designer",
+      department: "Interior Design",
+      month: "October 2024",
+      basicSalary: 7800,
+      bonus: 800,
+      deductions: 350,
+      netSalary: 8250,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Bonus for Aspen Penthouse handover milestone."
+    },
+    {
+      id: "SAL-2024-1003",
+      employeeId: "STR-103",
+      employeeName: "Marcus Thorne",
+      designation: "Lead Structural Engineer",
+      department: "Structural",
+      month: "October 2024",
+      basicSalary: 7400,
+      bonus: 700,
+      deductions: 400,
+      netSalary: 7700,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Monthly salary & BIM coordination bonus."
+    },
+    {
+      id: "SAL-2024-1004",
+      employeeId: "VIS-104",
+      employeeName: "Elena Rostova",
+      designation: "Senior 3D Visualizer",
+      department: "Architecture",
+      month: "October 2024",
+      basicSalary: 6400,
+      bonus: 600,
+      deductions: 250,
+      netSalary: 6750,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "3D animation rendering delivery award."
+    },
+    {
+      id: "SAL-2024-1005",
+      employeeId: "ARCH-105",
+      employeeName: "David Kim",
+      designation: "Project Architect",
+      department: "Architecture",
+      month: "October 2024",
+      basicSalary: 8200,
+      bonus: 900,
+      deductions: 450,
+      netSalary: 8650,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Greenwich estate project supervision allowance."
+    },
+    {
+      id: "SAL-2024-1006",
+      employeeId: "INT-106",
+      employeeName: "Aria Montgomery",
+      designation: "FF&E & Material Specialist",
+      department: "Interior Design",
+      month: "October 2024",
+      basicSalary: 5900,
+      bonus: 450,
+      deductions: 200,
+      netSalary: 6150,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Material procurement coordination."
+    },
+    {
+      id: "SAL-2024-1007",
+      employeeId: "SITE-107",
+      employeeName: "Liam O'Connor",
+      designation: "Site Execution Supervisor",
+      department: "Site Supervision",
+      month: "October 2024",
+      basicSalary: 6500,
+      bonus: 500,
+      deductions: 300,
+      netSalary: 6700,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Site safety compliance incentive."
+    },
+    {
+      id: "SAL-2024-1008",
+      employeeId: "EST-108",
+      employeeName: "Nadia Al-Mansoor",
+      designation: "Senior Cost Estimator",
+      department: "Estimation",
+      month: "October 2024",
+      basicSalary: 6200,
+      bonus: 400,
+      deductions: 250,
+      netSalary: 6350,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Tender budget auditing completion."
+    },
+    {
+      id: "SAL-2024-1009",
+      employeeId: "LAN-109",
+      employeeName: "Julian Sterling",
+      designation: "Landscape Architect",
+      department: "Architecture",
+      month: "October 2024",
+      basicSalary: 5100,
+      bonus: 300,
+      deductions: 180,
+      netSalary: 5220,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Promenade landscape schematic submission."
+    },
+    {
+      id: "SAL-2024-1010",
+      employeeId: "ADM-110",
+      employeeName: "Claire Beauchamp",
+      designation: "Studio Operations & HR",
+      department: "Admin & HR",
+      month: "October 2024",
+      basicSalary: 5600,
+      bonus: 400,
+      deductions: 200,
+      netSalary: 5800,
+      status: "Paid",
+      paymentDate: "2024-10-31",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Studio management and recruitment bonus."
+    },
+    // November current month pending items
+    {
+      id: "SAL-2024-1101",
+      employeeId: "ARCH-101",
+      employeeName: "Alexander Vance",
+      designation: "Principal Architect",
+      department: "Architecture",
+      month: "November 2024",
+      basicSalary: 9500,
+      bonus: 1000,
+      deductions: 500,
+      netSalary: 10000,
+      status: "Pending",
+      paymentDate: "Pending",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Scheduled end of month disbursement."
+    },
+    {
+      id: "SAL-2024-1102",
+      employeeId: "INT-102",
+      employeeName: "Sophia Lorenzi",
+      designation: "Senior Interior Designer",
+      department: "Interior Design",
+      month: "November 2024",
+      basicSalary: 7800,
+      bonus: 600,
+      deductions: 350,
+      netSalary: 8050,
+      status: "Pending",
+      paymentDate: "Pending",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Scheduled end of month disbursement."
+    },
+    {
+      id: "SAL-2024-1103",
+      employeeId: "ARCH-105",
+      employeeName: "David Kim",
+      designation: "Project Architect",
+      department: "Architecture",
+      month: "November 2024",
+      basicSalary: 8200,
+      bonus: 800,
+      deductions: 450,
+      netSalary: 8550,
+      status: "Pending",
+      paymentDate: "Pending",
+      paymentMethod: "Bank Direct Deposit",
+      notes: "Scheduled end of month disbursement."
+    }
+  ],
+
+  inventory: [
+    {
+      id: "MAT-001",
+      sku: "MAT-STN-001",
+      name: "Calacatta Gold Italian Marble",
+      category: "Stone & Marble",
+      stock: 145,
+      unit: "sq.m",
+      reorderLevel: 50,
+      unitCost: 195,
+      supplier: "Carrara Quarries Direct Ltd",
+      status: "In Stock",
+      location: "Warehouse Bay A-12",
+      usedInProjects: ["PRJ-2024-01", "PRJ-2024-02", "PRJ-2024-04"]
+    },
+    {
+      id: "MAT-002",
+      sku: "MAT-FLR-002",
+      name: "French Smoked White Oak Flooring",
+      category: "Flooring",
+      stock: 380,
+      unit: "sq.m",
+      reorderLevel: 100,
+      unitCost: 98,
+      supplier: "Bordeaux Millwork Imports",
+      status: "In Stock",
+      location: "Warehouse Bay B-04",
+      usedInProjects: ["PRJ-2024-01", "PRJ-2024-05"]
+    },
+    {
+      id: "MAT-003",
+      sku: "MAT-WOD-003",
+      name: "Acoustic Slatted Walnut Wall Panels",
+      category: "Wood & Millwork",
+      stock: 24,
+      unit: "panels (2.4m x 0.6m)",
+      reorderLevel: 40,
+      unitCost: 220,
+      supplier: "Nordic Acoustic Craft",
+      status: "Low Stock",
+      location: "Warehouse Bay C-01",
+      usedInProjects: ["PRJ-2024-03", "PRJ-2024-04"]
+    },
+    {
+      id: "MAT-004",
+      sku: "MAT-HWD-004",
+      name: "Unlacquered Burnished Brass Hardware",
+      category: "Hardware & Fixtures",
+      stock: 310,
+      unit: "pieces",
+      reorderLevel: 80,
+      unitCost: 48,
+      supplier: "Atelier Brassworks NYC",
+      status: "In Stock",
+      location: "Secure Storage Shelf 3",
+      usedInProjects: ["PRJ-2024-02", "PRJ-2024-05"]
+    },
+    {
+      id: "MAT-005",
+      sku: "MAT-GLS-005",
+      name: "Acoustic Low-Iron Tempered Glass (12mm)",
+      category: "Glass & Glazing",
+      stock: 12,
+      unit: "sheets (3m x 2m)",
+      reorderLevel: 25,
+      unitCost: 410,
+      supplier: "Solaris Glazing Technologies",
+      status: "Low Stock",
+      location: "Rack G-02",
+      usedInProjects: ["PRJ-2024-01", "PRJ-2024-03"]
+    },
+    {
+      id: "MAT-006",
+      sku: "MAT-PNT-006",
+      name: "Microcement Architectural Finish - Bone",
+      category: "Paints & Finishes",
+      stock: 65,
+      unit: "buckets (20kg)",
+      reorderLevel: 30,
+      unitCost: 140,
+      supplier: "DecoCrete Surface Systems",
+      status: "In Stock",
+      location: "Warehouse Bay D-07",
+      usedInProjects: ["PRJ-2024-01", "PRJ-2024-04"]
+    },
+    {
+      id: "MAT-007",
+      sku: "MAT-LGT-007",
+      name: "Magnetic Recessed Architectural LED Track",
+      category: "Lighting",
+      stock: 4,
+      unit: "fixtures (2m track)",
+      reorderLevel: 20,
+      unitCost: 285,
+      supplier: "Lumos Precision Lighting",
+      status: "Out of Stock",
+      location: "Electrical Cage 2",
+      usedInProjects: ["PRJ-2024-03", "PRJ-2024-05"]
+    },
+    {
+      id: "MAT-008",
+      sku: "MAT-FAB-008",
+      name: "Heavy Belgian Oatmeal Linen Drapery",
+      category: "Fabrics & Upholstery",
+      stock: 190,
+      unit: "meters",
+      reorderLevel: 50,
+      unitCost: 65,
+      supplier: "Flemish Weavers & Co",
+      status: "In Stock",
+      location: "Textile Rack T-01",
+      usedInProjects: ["PRJ-2024-04", "PRJ-2024-05"]
+    },
+    {
+      id: "MAT-009",
+      sku: "MAT-CON-009",
+      name: "Architectural Fair-Faced Concrete Sealant",
+      category: "Paints & Finishes",
+      stock: 45,
+      unit: "canisters (5L)",
+      reorderLevel: 20,
+      unitCost: 85,
+      supplier: "Silika Protect Solutions",
+      status: "In Stock",
+      location: "Chemical Store Rm 1",
+      usedInProjects: ["PRJ-2024-01", "PRJ-2024-07"]
+    },
+    {
+      id: "MAT-010",
+      sku: "MAT-MET-010",
+      name: "Anodized Charcoal Aluminium Cladding Panels",
+      category: "Hardware & Fixtures",
+      stock: 8,
+      unit: "panels (3m x 1m)",
+      reorderLevel: 35,
+      unitCost: 320,
+      supplier: "MetaloTek Facades",
+      status: "Out of Stock",
+      location: "Yard Bay E-02",
+      usedInProjects: ["PRJ-2024-03", "PRJ-2024-06"]
+    },
+    {
+      id: "MAT-011",
+      sku: "MAT-ROF-011",
+      name: "Titanium Zinc Standing Seam Roofing Sheets",
+      category: "Roofing & Cladding",
+      stock: 15,
+      unit: "sheets (4m x 1m)",
+      reorderLevel: 60,
+      unitCost: 260,
+      supplier: "Rheinzink Architectural Imports",
+      status: "Low Stock",
+      location: "Yard Bay C-05",
+      usedInProjects: ["PRJ-2024-01", "PRJ-2024-08"]
+    },
+    {
+      id: "MAT-012",
+      sku: "MAT-HWD-012",
+      name: "Brushed Bronze Minimalist Lever Handles",
+      category: "Hardware & Fixtures",
+      stock: 18,
+      unit: "pairs",
+      reorderLevel: 50,
+      unitCost: 110,
+      supplier: "Formani Architectural Hardware",
+      status: "Low Stock",
+      location: "Secure Storage Shelf 2",
+      usedInProjects: ["PRJ-2024-02", "PRJ-2024-05"]
+    },
+    {
+      id: "MAT-013",
+      sku: "MAT-STN-013",
+      name: "Pietra Grey Honed Limestone Pavers",
+      category: "Stone & Marble",
+      stock: 30,
+      unit: "sq.m",
+      reorderLevel: 80,
+      unitCost: 175,
+      supplier: "Levantina Stone Resources",
+      status: "Low Stock",
+      location: "Warehouse Bay A-08",
+      usedInProjects: ["PRJ-2024-04", "PRJ-2024-07"]
+    },
+    {
+      id: "MAT-014",
+      sku: "MAT-ACO-014",
+      name: "Acoustic Basotect Charcoal Foam Baffles",
+      category: "Wood & Millwork",
+      stock: 14,
+      unit: "baffles (1200 x 300mm)",
+      reorderLevel: 45,
+      unitCost: 135,
+      supplier: "Ecophon Saint-Gobain",
+      status: "Low Stock",
+      location: "Warehouse Bay C-04",
+      usedInProjects: ["PRJ-2024-03"]
+    },
+    {
+      id: "MAT-015",
+      sku: "MAT-GLS-015",
+      name: "Ultra-Clear Reeded Fluted Glass Panels",
+      category: "Glass & Glazing",
+      stock: 9,
+      unit: "sheets (2.8m x 1.2m)",
+      reorderLevel: 30,
+      unitCost: 290,
+      supplier: "Solaris Glazing Technologies",
+      status: "Low Stock",
+      location: "Rack G-04",
+      usedInProjects: ["PRJ-2024-04", "PRJ-2024-05"]
+    }
+  ],
+
+  stockMovements: [
+    {
+      id: "MOV-001",
+      materialId: "MAT-001",
+      materialName: "Calacatta Gold Italian Marble",
+      type: "Allocated",
+      quantity: "45 sq.m",
+      project: "Montauk Oceanfront Villa",
+      timestamp: "2 hours ago",
+      actor: "Alexander Vance"
+    },
+    {
+      id: "MOV-002",
+      materialId: "MAT-002",
+      materialName: "French Smoked White Oak Flooring",
+      type: "Received",
+      quantity: "120 sq.m",
+      project: "Warehouse Bay B-04 Delivery",
+      timestamp: "5 hours ago",
+      actor: "Sophia Lorenzi"
+    },
+    {
+      id: "MOV-003",
+      materialId: "MAT-005",
+      materialName: "Acoustic Low-Iron Tempered Glass",
+      type: "Allocated",
+      quantity: "8 sheets",
+      project: "Zenith Tower Executive HQ",
+      timestamp: "Yesterday",
+      actor: "Marcus Thorne"
+    },
+    {
+      id: "MOV-004",
+      materialId: "MAT-007",
+      materialName: "Magnetic Recessed Architectural LED Track",
+      type: "Depleted",
+      quantity: "16 fixtures",
+      project: "Aura Wellness Resort & Spa",
+      timestamp: "2 days ago",
+      actor: "David Kim"
+    },
+    {
+      id: "MOV-005",
+      materialId: "MAT-006",
+      materialName: "Microcement Architectural Finish",
+      type: "Allocated",
+      quantity: "15 buckets",
+      project: "Waterfront Pavilion & Promenade",
+      timestamp: "3 days ago",
+      actor: "Julian Sterling"
+    }
+  ],
+
+  transactions: [
+    {
+      id: "TX-2024-001",
+      type: "Income",
+      category: "Client Milestone Billing",
+      amount: 450000,
+      date: "2024-10-25",
+      reference: "INV-2024-109 (Elysium Developments)",
+      projectId: "PRJ-2024-01",
+      status: "Completed",
+      notes: "Milestone payment: Glazing and exterior waterproofing completion."
+    },
+    {
+      id: "TX-2024-002",
+      type: "Income",
+      category: "Design Retainer",
+      amount: 320000,
+      date: "2024-10-14",
+      reference: "INV-2024-104 (Zenith Financial)",
+      projectId: "PRJ-2024-03",
+      status: "Completed",
+      notes: "Executive boardroom design sign-off and permit drawings."
+    },
+    {
+      id: "TX-2024-003",
+      type: "Income",
+      category: "Consulting & Site Supervision",
+      amount: 180000,
+      date: "2024-10-08",
+      reference: "INV-2024-098 (Arthur & Vivienne Pendelton)",
+      projectId: "PRJ-2024-02",
+      status: "Completed",
+      notes: "Construction phase site verification fee."
+    },
+    {
+      id: "TX-2024-004",
+      type: "Income",
+      category: "Client Milestone Billing",
+      amount: 220000,
+      date: "2024-10-02",
+      reference: "INV-2024-092 (Botanica Hospitality)",
+      projectId: "PRJ-2024-04",
+      status: "Completed",
+      notes: "Spa interior procurement release deposit."
+    },
+    {
+      id: "TX-2024-005",
+      type: "Expense",
+      category: "Employee Payroll",
+      amount: 71770,
+      date: "2024-10-31",
+      reference: "PAYROLL-2024-10",
+      projectId: null,
+      status: "Completed",
+      notes: "October full team salary and performance disbursements."
+    },
+    {
+      id: "TX-2024-006",
+      type: "Expense",
+      category: "Materials & Inventory",
+      amount: 48500,
+      date: "2024-10-20",
+      reference: "PO-2024-448 (Carrara Quarries)",
+      projectId: "PRJ-2024-01",
+      status: "Completed",
+      notes: "Calacatta Marble slab batch acquisition for Montauk Villa."
+    },
+    {
+      id: "TX-2024-007",
+      type: "Expense",
+      category: "Subcontractor & Engineering",
+      amount: 32000,
+      date: "2024-10-18",
+      reference: "SUB-2024-082 (Geotechnical Seismic Corp)",
+      projectId: "PRJ-2024-07",
+      status: "Completed",
+      notes: "Waterfront pier load-bearing geotechnical testing."
+    },
+    {
+      id: "TX-2024-008",
+      type: "Expense",
+      category: "Software & 3D Render Licenses",
+      amount: 9800,
+      date: "2024-10-10",
+      reference: "SUB-CAD-2024",
+      projectId: null,
+      status: "Completed",
+      notes: "Autodesk Revit, Rhino 3D, and V-Ray studio cloud rendering credits."
+    },
+    {
+      id: "TX-2024-009",
+      type: "Expense",
+      category: "Studio Facility Overhead",
+      amount: 14500,
+      date: "2024-10-01",
+      reference: "LEASE-OCT-2024",
+      projectId: null,
+      status: "Completed",
+      notes: "Level 14 Apex Tower commercial studio rent and high-speed fiber."
+    },
+    {
+      id: "TX-2024-010",
+      type: "Income",
+      category: "Client Milestone Billing",
+      amount: 290000,
+      date: "2024-11-04",
+      reference: "INV-2024-115 (Elysium Developments)",
+      projectId: "PRJ-2024-01",
+      status: "Completed",
+      notes: "Interior finishes release installment."
+    }
+  ],
+
+  reviews: [
+    {
+      id: "REV-001",
+      customerName: "Henry Kensington",
+      company: "Elysium Developments Ltd",
+      projectName: "The Glass Pavilion - Minimalist Villa",
+      rating: 5,
+      date: "2024-10-29",
+      title: "Unmatched Vision and Structural Mastery",
+      comment: "Alexander Vance and the Bistirno team transformed an impossible oceanfront cliffside into an iconic modern architectural masterpiece. Their rigorous attention to structural detailing, natural lighting, and luxury material finishes is extraordinary.",
+      category: "Design Quality & Execution",
+      featured: true,
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "REV-002",
+      customerName: "Soren & Maya Lindqvist",
+      company: "Lindqvist Creative Studio",
+      projectName: "Nordic Haven Alpine Penthouse",
+      rating: 5,
+      date: "2024-06-25",
+      title: "Sensational Minimalist Interior Design",
+      comment: "Sophia Lorenzi brought Scandinavian tranquility to life in our Aspen residence. The fluted walnut panels, bespoke kitchen island, and hidden acoustic integration make living here pure poetry.",
+      category: "Interior Aesthetics",
+      featured: true,
+      avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "REV-003",
+      customerName: "Dr. Arthur Pendelton",
+      company: "Private Residence",
+      projectName: "Greenwich Stone & Timber Estate",
+      rating: 5,
+      date: "2024-09-12",
+      title: "Seamless Project Management & Cost Discipline",
+      comment: "Building a complex 8,000 sq.ft estate could easily be a nightmare, but David Kim and Bistirno ArchStudio kept every milestone on schedule and budget. Truly dependable architectural partners.",
+      category: "Project Management",
+      featured: true,
+      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "REV-004",
+      customerName: "Devon Vance",
+      company: "NovaCore Tech Innovations",
+      projectName: "NovaCore Biophilic Tech Campus",
+      rating: 5,
+      date: "2024-04-05",
+      title: "A New Standard for Sustainable Workplaces",
+      comment: "The bioclimatic facade and open-air mass timber atrium have significantly improved employee morale and energy efficiency. Our facility was recently featured in Architectural Digest!",
+      category: "Sustainability & Innovation",
+      featured: true,
+      avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "REV-005",
+      customerName: "Marcus Brody",
+      company: "Zenith Financial Capital",
+      projectName: "Zenith Tower Executive HQ",
+      rating: 4,
+      date: "2024-10-15",
+      title: "World-Class Corporate Architecture",
+      comment: "Bistirno conquered complex zoning restrictions and elevated our executive trading headquarters into an international landmark. Minor delivery delay on imported glazing, but the craftsmanship is peerless.",
+      category: "Commercial Architecture",
+      featured: false,
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=256&q=80"
+    },
+    {
+      id: "REV-006",
+      customerName: "Clara Simmons",
+      company: "The Botanica Hospitality Group",
+      projectName: "Aura Wellness Resort & Spa",
+      rating: 5,
+      date: "2024-08-30",
+      title: "Transformative Hospitality Ambience",
+      comment: "The sensory palette designed by the interior team has received glowing reviews from our retreat guests. The lighting, natural earth plasters, and organic textures create an unforgettable sanctuary.",
+      category: "Hospitality & Interior",
+      featured: true,
+      avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=256&q=80"
+    }
+  ],
+
+  portfolio: [
+    {
+      id: "PORT-001",
+      title: "The Glass Pavilion",
+      category: "Modern Building Designs",
+      type: "Modern Building Designs",
+      location: "Montauk, Long Island, NY",
+      year: "2024",
+      area: "7,800 sq.ft",
+      architect: "Alexander Vance",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      description: "Cantilevered contemporary coastal residence with continuous perimeter thermal glass, exposed post-tensioned concrete, and an infinity reflecting pool."
+    },
+    {
+      id: "PORT-002",
+      title: "Greenwich Meadow Estate",
+      category: "Residential Architecture",
+      type: "Residential Architecture",
+      location: "Greenwich, CT",
+      year: "2024",
+      area: "9,200 sq.ft",
+      architect: "David Kim",
+      image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
+      description: "Modernized agrarian compound synthesizing native granite stonework, black standing-seam zinc roof planes, and timber-clad verandas."
+    },
+    {
+      id: "PORT-003",
+      title: "Zenith Commercial Tower",
+      category: "Commercial Architecture",
+      type: "Commercial Architecture",
+      location: "Chicago Loop, IL",
+      year: "2024",
+      area: "42,000 sq.ft",
+      architect: "Alexander Vance & Marcus Thorne",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      description: "High-density sustainable commercial headquarters engineered with intelligent double-skin façade ventilation and light-diffusing central atrium."
+    },
+    {
+      id: "PORT-004",
+      title: "Aura Sanctuary & Spa",
+      category: "Interior Design Projects",
+      type: "Interior Design Projects",
+      location: "Sedona, AZ",
+      year: "2024",
+      area: "14,500 sq.ft",
+      architect: "Sophia Lorenzi",
+      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
+      description: "Subtle tactile interior architecture featuring hand-troweled lime wash, monolithic travertine baths, and concealed circadian lighting fixtures."
+    },
+    {
+      id: "PORT-005",
+      title: "Aspen Highline Penthouse",
+      category: "Interior Design Projects",
+      type: "Interior Design Projects",
+      location: "Aspen, CO",
+      year: "2024",
+      area: "4,600 sq.ft",
+      architect: "Sophia Lorenzi",
+      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      description: "Warm minimalist penthouse interior with floor-to-ceiling alpine vistas, blackened steel hearth, and custom Scandinavian millwork."
+    },
+    {
+      id: "PORT-006",
+      title: "NovaCore Mass Timber Campus",
+      category: "Modern Building Designs",
+      type: "Modern Building Designs",
+      location: "Salt Lake City, UT",
+      year: "2023",
+      area: "35,000 sq.ft",
+      architect: "Marcus Thorne",
+      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      description: "Net-zero energy research campus built with locally harvested Austrian-grade cross-laminated timber, passive shading louvers, and living rooftop bioswales."
+    },
+    {
+      id: "PORT-007",
+      title: "Battery Park Promenade Pavilion",
+      category: "Exterior Design Projects",
+      type: "Exterior Design Projects",
+      location: "New York, NY",
+      year: "2024",
+      area: "18,000 sq.ft",
+      architect: "Julian Sterling",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+      description: "Public urban outdoor architecture integrating salt-tolerant coastal plantings, curved hyperbolic concrete shade structures, and waterfront steps."
+    },
+    {
+      id: "PORT-008",
+      title: "Komorebi Forest Residence",
+      category: "Modern Building Designs",
+      type: "Modern Building Designs",
+      location: "Berkshires, MA",
+      year: "2024",
+      area: "5,400 sq.ft",
+      architect: "Alexander Vance",
+      image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      description: "Subtle Japanese modernist villa floating gently over woodland terrain, designed with Shou Sugi Ban char-treated cedar and sunken courtyards."
+    },
+    {
+      id: "PORT-009",
+      title: "The Solarium Villa",
+      category: "Residential Architecture",
+      type: "Residential Architecture",
+      location: "Malibu, CA",
+      year: "2023",
+      area: "6,500 sq.ft",
+      architect: "David Kim",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+      description: "Dramatic terraced hillside villa celebrating natural sunlight through sculptured light wells, glass bridges, and open breezeways."
+    },
+    {
+      id: "PORT-010",
+      title: "Atelier Vanguard Studio",
+      category: "Commercial Architecture",
+      type: "Commercial Architecture",
+      location: "Tribeca, New York, NY",
+      year: "2023",
+      area: "11,000 sq.ft",
+      architect: "Alexander Vance",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+      description: "Adaptive reuse of a historic cast-iron textile warehouse into a cutting-edge design and fashion studio with museum gallery lighting."
+    },
+    {
+      id: "PORT-011",
+      title: "Mirage Desert Residence",
+      category: "Exterior Design Projects",
+      type: "Exterior Design Projects",
+      location: "Palm Springs, CA",
+      year: "2024",
+      area: "8,500 sq.ft",
+      architect: "Julian Sterling",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+      description: "Outdoor living architecture featuring cantilevered shade pergolas, desert xeriscaping, sunken fire lounge, and reflective water features."
+    },
+    {
+      id: "PORT-012",
+      title: "The Minimalist Kitchen & Living Gallery",
+      category: "Interior Design Projects",
+      type: "Interior Design Projects",
+      location: "SoHo, NY",
+      year: "2024",
+      area: "3,200 sq.ft",
+      architect: "Sophia Lorenzi & Aria Montgomery",
+      image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80",
+      description: "Seamless open-plan kitchen and living space sculpted with Calacatta marble monoliths, smoked mirror accents, and concealed cabinetry."
+    }
+  ],
+
+  activities: [
+    {
+      id: "ACT-001",
+      icon: "check-circle-2",
+      color: "emerald",
+      title: "Milestone Completed",
+      description: "Glazing installation marked complete for The Glass Pavilion.",
+      time: "25 minutes ago"
+    },
+    {
+      id: "ACT-002",
+      icon: "dollar-sign",
+      color: "amber",
+      title: "Payment Received",
+      description: "$290,000 received from Elysium Developments Ltd (INV-2024-115).",
+      time: "2 hours ago"
+    },
+    {
+      id: "ACT-003",
+      icon: "star",
+      color: "indigo",
+      title: "New 5-Star Review",
+      description: "Henry Kensington posted a glowing 5-star review for Montauk Villa.",
+      time: "4 hours ago"
+    },
+    {
+      id: "ACT-004",
+      icon: "package",
+      color: "rose",
+      title: "Inventory Alert",
+      description: "Magnetic Recessed Architectural LED Track is now Out of Stock.",
+      time: "Yesterday"
+    },
+    {
+      id: "ACT-005",
+      icon: "user-check",
+      color: "blue",
+      title: "Attendance Updated",
+      description: "10 employees marked for daily attendance check-in.",
+      time: "Yesterday"
+    }
+  ]
+};
+

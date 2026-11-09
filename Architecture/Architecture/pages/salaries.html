@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salaries & Payroll | Bistirno ArchStudio Pro</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif']
+          },
+          colors: { amber: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' } }
+        }
+      }
+    };
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/salaries.css" />
+</head>
+<body class="min-h-screen font-sans architect-grid-bg transition-colors duration-200">
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="mobile-sidebar-backdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+
+  <div class="flex h-screen overflow-hidden">
+    
+    <!-- ==================== DESKTOP & MOBILE SIDEBAR ==================== -->
+    <aside class="desktop-sidebar hidden lg:flex flex-col w-64 xl:w-72 bg-[#F9FAFB] border-r border-[#E4E4E7] z-50 transition-all flex-shrink-0 select-none">
+      
+      <!-- Studio Brand Header -->
+      <div class="p-5 border-b border-[#E4E4E7] flex items-center justify-between">
+        <a href="dashboard.html" class="flex items-center gap-3 text-decoration-none">
+          <div class="w-10 h-10 rounded-2xl bg-[#18181B] flex items-center justify-center text-white shadow-sm flex-shrink-0">
+            <i data-lucide="building-2" class="w-5 h-5 stroke-[2]"></i>
+          </div>
+          <div>
+            <h1 class="text-base font-bold font-display tracking-tight text-[#18181B] leading-tight">
+              Bistirno
+            </h1>
+            <span class="text-xs font-medium text-[#71717A] block">
+              Inventory Management
+            </span>
+          </div>
+        </a>
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-1.5 rounded-xl text-[#71717A] hover:bg-[#E4E4E7]" title="Close Menu">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Search Menu Bar -->
+      <div class="px-4 pt-4 pb-2">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-[#A1A1AA]"></i>
+          <input 
+            type="text" 
+            placeholder="Search menu" 
+            id="sidebar-search-input"
+            class="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-white border border-[#E4E4E7] text-[#18181B] placeholder-[#A1A1AA] focus:outline-none focus:border-[#18181B] transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 overflow-y-auto px-4 py-2 space-y-4">
+        <div>
+          <a href="dashboard.html?view=inventory" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="home" class="w-4 h-4"></i>
+              <span class="sidebar-text">Dashboard</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Inventory</div>
+          <a href="projects.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="box" class="w-4 h-4"></i>
+              <span class="sidebar-text">Products & Materials</span>
+            </div>
+            <span class="sidebar-badge">248</span>
+          </a>
+          <a href="projects.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span class="sidebar-text">Categories</span>
+            </div>
+          </a>
+          <a href="finance.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-down-to-dot" class="w-4 h-4"></i>
+              <span class="sidebar-text">Stock In</span>
+            </div>
+          </a>
+          <a href="finance.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-up-from-dot" class="w-4 h-4"></i>
+              <span class="sidebar-text">Stock Out</span>
+            </div>
+          </a>
+          <a href="projects.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+              <span class="sidebar-text">Site Transfer</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Projects</div>
+          <a href="projects.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="building" class="w-4 h-4"></i>
+              <span class="sidebar-text">Project Allocation</span>
+            </div>
+          </a>
+          <a href="project-details.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              <span class="sidebar-text">Material Requests</span>
+            </div>
+            <span class="sidebar-badge">5</span>
+          </a>
+        </div>
+
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Procurement</div>
+          <a href="finance.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="tag" class="w-4 h-4"></i>
+              <span class="sidebar-text">Purchase Orders</span>
+            </div>
+          </a>
+          <a href="customers.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="truck" class="w-4 h-4"></i>
+              <span class="sidebar-text">Vendors</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">System</div>
+          <a href="reports.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+              <span class="sidebar-text">Reports</span>
+            </div>
+          </a>
+          <a href="employees.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="users" class="w-4 h-4"></i>
+              <span class="sidebar-text">Employee Management</span>
+            </div>
+          </a>
+          <a href="employees.html?tab=attendance" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="calendar-check-2" class="w-4 h-4"></i>
+              <span class="sidebar-text">Attendance Sheet</span>
+            </div>
+          </a>
+          <a href="salaries.html" class="sidebar-link active">
+            <div class="sidebar-link-content">
+              <i data-lucide="credit-card" class="w-4 h-4"></i>
+              <span class="sidebar-text">Salaries & Payroll</span>
+            </div>
+          </a>
+          <a href="portfolio.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="image" class="w-4 h-4"></i>
+              <span class="sidebar-text">Architecture Portfolio</span>
+            </div>
+          </a>
+          <a href="reviews.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="star" class="w-4 h-4"></i>
+              <span class="sidebar-text">Ratings & Reviews</span>
+            </div>
+          </a>
+          <a href="settings.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="settings" class="w-4 h-4"></i>
+              <span class="sidebar-text">Settings</span>
+            </div>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Bottom Admin User Profile Card -->
+      <div class="sidebar-admin-card">
+        <a href="settings.html" class="sidebar-admin-card-inner group" title="Open Admin Profile & Settings">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="relative flex-shrink-0">
+              <div class="w-8 h-8 rounded-xl bg-[#9CA3AF] text-white font-extrabold text-xs flex items-center justify-center font-display shadow-sm">A</div>
+              <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
+            </div>
+            <div class="min-w-0">
+              <h4 class="text-xs font-bold text-[#18181B] truncate">Alexander Vance</h4>
+              <span class="text-[10px] text-[#71717A] font-medium block truncate">Administrator · AIA</span>
+            </div>
+          </div>
+          <div class="p-1.5 rounded-xl hover:bg-[#F4F4F5] text-[#71717A] group-hover:text-[#18181B] transition-colors">
+            <i data-lucide="settings" class="w-4 h-4"></i>
+          </div>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+      
+      <header class="h-20 bg-white border-b border-[#E4E4E7] px-6 md:px-8 flex items-center justify-between z-20 flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-[#71717A] hover:bg-[#F4F4F5]">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <div>
+            <h2 class="text-xl md:text-2xl font-bold font-display text-[#18181B] tracking-tight">
+              Salaries & Payroll Register
+            </h2>
+            <p class="text-xs text-[#71717A] mt-0.5">Staff compensation, bonuses, deductions & payslips</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="openModal('modal-add-salary')" class="btn-primary py-2 px-3.5 text-xs">
+            <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5]"></i> Issue Pay Slip
+          </button>
+          <button onclick="toggleTheme()" class="topbar-icon-btn border-dark" title="Toggle Theme">
+            <i id="theme-toggle-icon" data-lucide="sun" class="w-5 h-5 stroke-[2]"></i>
+          </button>
+          <a href="notifications.html" class="topbar-icon-btn relative bg-white" title="Notifications">
+            <i data-lucide="bell" class="w-5 h-5 stroke-[1.8]"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#DC2626] text-white text-[10px] font-extrabold flex items-center justify-center">7</span>
+          </a>
+          <a href="settings.html" class="admin-pill-badge" title="Admin Profile & Settings">
+            <div class="admin-avatar-badge">A</div>
+            <span class="text-xs font-bold text-[#18181B]">Admin</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="flex-1 overflow-y-auto p-4 md:p-8">
+        
+        <!-- Summary Stats -->
+        <div id="payroll-stats" class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-6"></div>
+
+        <!-- Table -->
+        <div class="bg-white dark:bg-[#18181B] rounded-3xl border border-[#E4E4E7] dark:border-[#27272A] shadow-sm overflow-hidden">
+          <div class="p-4 border-b border-[#E4E4E7] dark:border-[#27272A] flex items-center justify-between">
+            <h3 class="text-base font-bold text-[#18181B] dark:text-[#FAFAFA]">Monthly Salary Statements</h3>
+            <input type="text" id="sal-search" oninput="filterSalaryList()" placeholder="Filter statements..." class="px-3 py-1.5 text-xs rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA] placeholder-[#A1A1AA] focus:outline-none" />
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#F9FAFB] dark:bg-[#27272A] text-[#71717A] dark:text-[#A1A1AA] uppercase font-semibold">
+                <tr>
+                  <th class="p-4">Slip ID</th>
+                  <th class="p-4">Employee</th>
+                  <th class="p-4">Period</th>
+                  <th class="p-4">Basic</th>
+                  <th class="p-4">Bonus</th>
+                  <th class="p-4">Deductions</th>
+                  <th class="p-4">Net Salary</th>
+                  <th class="p-4">Status</th>
+                  <th class="p-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="salaries-tbody" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- Modal: Issue Salary -->
+  <div id="modal-add-salary" class="modal-overlay hidden">
+    <div class="modal-card max-w-md p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
+        <h3 class="text-lg font-bold font-display text-slate-900 dark:text-white">Issue Salary Statement</h3>
+        <button onclick="closeModal('modal-add-salary')" class="text-slate-400 hover:text-slate-200"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form onsubmit="handleCreateSalary(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-slate-600 dark:text-slate-300">Select Team Member</label>
+          <select id="modal-emp-select" name="employeeId" required onchange="onEmpSelect(this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"></select>
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1 text-slate-600 dark:text-slate-300">Pay Period Month</label>
+          <input type="text" name="month" value="November 2024" required class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white" />
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-semibold mb-1 text-slate-600 dark:text-slate-300">Basic ($)</label>
+            <input type="number" id="modal-basic-input" name="basicSalary" value="6500" required class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-slate-600 dark:text-slate-300">Bonus ($)</label>
+            <input type="number" name="bonus" value="500" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-slate-600 dark:text-slate-300">Deductions ($)</label>
+            <input type="number" name="deductions" value="250" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1 text-slate-600 dark:text-slate-300">Disbursement Status</label>
+          <select name="status" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white">
+            <option value="Paid">Paid Immediately</option>
+            <option value="Pending" selected>Pending Payment</option>
+          </select>
+        </div>
+
+        <div class="pt-4 flex justify-end gap-2 border-t border-slate-100 dark:border-slate-800">
+          <button type="button" onclick="closeModal('modal-add-salary')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Generate Slip</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Shared Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function renderSalaries() {
+      const salaries = window.store.getSalaries();
+      const curr = window.store.getSettings().currency || "$";
+      const totalPaid = salaries.filter(s => s.status === "Paid").reduce((sum, s) => sum + Number(s.netSalary), 0);
+      const pendingPaid = salaries.filter(s => s.status === "Pending").reduce((sum, s) => sum + Number(s.netSalary), 0);
+
+      document.getElementById("payroll-stats").innerHTML = `
+        <div class="p-5 rounded-3xl bg-white dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A] shadow-sm">
+          <span class="text-xs uppercase font-semibold text-[#A1A1AA]">Total Disbursed</span>
+          <div class="text-2xl font-bold font-display text-emerald-600 mt-2">${curr}${totalPaid.toLocaleString()}</div>
+        </div>
+        <div class="p-5 rounded-3xl bg-white dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A] shadow-sm">
+          <span class="text-xs uppercase font-semibold text-[#A1A1AA]">Pending Payouts</span>
+          <div class="text-2xl font-bold font-display text-amber-500 mt-2">${curr}${pendingPaid.toLocaleString()}</div>
+        </div>
+        <div class="p-5 rounded-3xl bg-white dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A] shadow-sm">
+          <span class="text-xs uppercase font-semibold text-[#A1A1AA]">Total Records</span>
+          <div class="text-2xl font-bold font-display text-[#18181B] dark:text-[#FAFAFA] mt-2">${salaries.length} Slips</div>
+        </div>
+      `;
+
+      document.getElementById("salaries-tbody").innerHTML = salaries.map(s => `
+        <tr class="hover:bg-[#F9FAFB] dark:hover:bg-[#27272A] transition-colors">
+          <td class="p-4 font-mono font-semibold text-[#A1A1AA]">${s.id}</td>
+          <td class="p-4">
+            <div class="font-bold text-[#18181B] dark:text-[#FAFAFA]">${window.uiRenderer.escapeHTML(s.employeeName)}</div>
+            <div class="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">${window.uiRenderer.escapeHTML(s.designation)}</div>
+          </td>
+          <td class="p-4 text-[#71717A] dark:text-[#A1A1AA]">${window.uiRenderer.escapeHTML(s.month)}</td>
+          <td class="p-4 text-[#18181B] dark:text-[#FAFAFA]">${curr}${Number(s.basicSalary).toLocaleString()}</td>
+          <td class="p-4 text-emerald-600 font-medium">+${curr}${Number(s.bonus || 0).toLocaleString()}</td>
+          <td class="p-4 text-rose-500 font-medium">-${curr}${Number(s.deductions || 0).toLocaleString()}</td>
+          <td class="p-4 font-bold text-[#18181B] dark:text-[#FAFAFA]">${curr}${Number(s.netSalary).toLocaleString()}</td>
+          <td class="p-4">
+            <span class="badge-status ${s.status === 'Paid' ? 'badge-completed' : 'badge-pending'}">${s.status}</span>
+          </td>
+          <td class="p-4 text-right">
+            <div class="inline-flex items-center gap-2">
+              ${s.status === 'Pending' ? `
+                <button onclick="paySalary('${s.id}')" class="btn-primary py-1 px-2.5 text-[11px]">Pay Now</button>
+              ` : `
+                <a href="salary-details.html?id=${s.id}" class="btn-secondary py-1 px-2.5 text-[11px] inline-flex items-center gap-1">
+                  <i data-lucide="printer" class="w-3 h-3"></i> Pay Slip
+                </a>
+              `}
+              <button onclick="deleteSal('${s.id}')" class="p-1 rounded text-[#71717A] hover:text-rose-500">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+      lucide.createIcons();
+    }
+
+    function filterSalaryList() {
+      const q = document.getElementById("sal-search").value.toLowerCase();
+      document.querySelectorAll("#salaries-tbody tr").forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(q) ? "" : "none";
+      });
+    }
+
+    function paySalary(id) {
+      window.store.markSalaryAsPaid(id);
+      renderSalaries();
+      window.app.showToast("Salary disbursed!");
+    }
+
+    function deleteSal(id) {
+      if (confirm("Delete this statement?")) {
+        window.store.deleteSalary(id);
+        renderSalaries();
+        window.app.showToast("Salary statement deleted", "info");
+      }
+    }
+
+    function populateEmployeeDropdown() {
+      const select = document.getElementById("modal-emp-select");
+      const employees = window.store.getEmployees();
+      select.innerHTML = '<option value="">-- Choose Employee --</option>' + employees.map(e => `
+        <option value="${e.id}">${window.uiRenderer.escapeHTML(e.name)} (${window.uiRenderer.escapeHTML(e.designation)})</option>
+      `).join("");
+    }
+
+    function onEmpSelect(empId) {
+      const emp = window.store.getEmployeeById(empId);
+      if (emp) document.getElementById("modal-basic-input").value = emp.basicSalary;
+    }
+
+    function handleCreateSalary(e) {
+      e.preventDefault();
+      const form = e.target;
+      const fd = new FormData(form);
+      const empId = fd.get("employeeId");
+      const emp = window.store.getEmployeeById(empId);
+
+      window.store.addSalary({
+        employeeId: empId,
+        employeeName: emp ? emp.name : "Staff Member",
+        designation: emp ? emp.designation : "",
+        department: emp ? emp.department : "",
+        month: fd.get("month"),
+        basicSalary: Number(fd.get("basicSalary")),
+        bonus: Number(fd.get("bonus") || 0),
+        deductions: Number(fd.get("deductions") || 0),
+        status: fd.get("status")
+      });
+      closeModal("modal-add-salary");
+      form.reset();
+      renderSalaries();
+      window.app.showToast("Salary statement issued!");
+    }
+
+    function openModal(id) {
+      if (id === 'modal-add-salary') populateEmployeeDropdown();
+      document.getElementById(id).classList.remove("hidden");
+    }
+    function closeModal(id) { document.getElementById(id).classList.add("hidden"); }
+
+    function toggleMobileMenu() {
+      if (window.app && window.app.toggleMobileMenu) {
+        window.app.toggleMobileMenu();
+      } else {
+        const sidebar = document.querySelector(".desktop-sidebar");
+        const backdrop = document.getElementById("mobile-sidebar-backdrop");
+        if (sidebar) {
+          const isHidden = sidebar.classList.contains("hidden");
+          if (isHidden) {
+            sidebar.classList.remove("hidden");
+            sidebar.classList.add("fixed", "inset-y-0", "left-0", "z-50", "flex", "shadow-2xl");
+            if (backdrop) backdrop.classList.remove("hidden");
+          } else {
+            sidebar.classList.add("hidden");
+            sidebar.classList.remove("fixed", "inset-y-0", "left-0", "z-50", "flex", "shadow-2xl");
+            if (backdrop) backdrop.classList.add("hidden");
+          }
+        }
+      }
+    }
+
+        function toggleTheme() {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("archstudio_theme", "light");
+      const icon = document.getElementById("theme-toggle-icon");
+      if (icon) {
+        icon.setAttribute("data-lucide", "sun");
+        lucide.createIcons();
+      }
+      if (window.app && window.app.showToast) {
+        window.app.showToast("Light architectural background is permanently active", "info");
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderSalaries();
+      const searchInput = document.getElementById("sidebar-search-input");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          const q = (e.target.value || "").toLowerCase().trim();
+          document.querySelectorAll(".sidebar-link").forEach(link => {
+            const text = link.textContent.toLowerCase();
+            link.style.display = (!q || text.includes(q)) ? "flex" : "none";
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+

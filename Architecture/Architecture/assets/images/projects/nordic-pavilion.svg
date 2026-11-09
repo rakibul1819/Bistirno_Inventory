@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="pavGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#27272A"/>
+      <stop offset="100%" stop-color="#18181B"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#pavGrad)"/>
+  <!-- Pavilion Cantilever -->
+  <polygon points="100,240 500,200 520,230 100,260" fill="#E4E4E7"/>
+  <polygon points="120,260 480,230 480,360 120,360" fill="#3F3F46" opacity="0.8"/>
+  <!-- Glass Columns -->
+  <line x1="160" y1="260" x2="160" y2="360" stroke="#A1A1AA" stroke-width="4"/>
+  <line x1="280" y1="250" x2="280" y2="360" stroke="#A1A1AA" stroke-width="4"/>
+  <line x1="400" y1="240" x2="400" y2="360" stroke="#A1A1AA" stroke-width="4"/>
+  <text x="30" y="50" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#FFFFFF">Nordic Timber Pavilion</text>
+  <text x="30" y="75" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="14" fill="#A1A1AA">Sustainable Civic & Waterfront Architecture</text>
+</svg>

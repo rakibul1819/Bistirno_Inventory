@@ -1,0 +1,9 @@
+/* Reports Styles */
+.report-section {
+  page-break-inside: avoid;
+}
+.report-stat-box {
+  border-radius: 14px;
+  padding: 18px;
+}
+

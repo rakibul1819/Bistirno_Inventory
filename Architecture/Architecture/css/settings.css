@@ -1,0 +1,10 @@
+/* Settings Styles */
+.settings-nav-pill.active {
+  background: #f59e0b;
+  color: #090d16;
+  font-weight: 700;
+}
+.settings-input {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
