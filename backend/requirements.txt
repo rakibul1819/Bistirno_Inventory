@@ -1,0 +1,3 @@
+# Default requirements file for quick installation
+-r requirements/local.txt
+

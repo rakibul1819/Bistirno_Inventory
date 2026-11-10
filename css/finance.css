@@ -1,0 +1,11 @@
+/* Financial Accounting Styles */
+.finance-metric {
+  border-left: 4px solid #f59e0b;
+}
+.finance-metric.income {
+  border-left-color: #10b981;
+}
+.finance-metric.expense {
+  border-left-color: #f43f5e;
+}
+

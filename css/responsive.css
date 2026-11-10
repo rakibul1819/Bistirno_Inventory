@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Bistirno - ArchStudio Pro | Responsive Layout Rules
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .desktop-sidebar:not(.fixed) {
+    display: none !important;
+  }
+  .desktop-sidebar.fixed {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-sidebar {
+    display: flex !important;
+  }
+  #mobile-sidebar-backdrop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .stat-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .table-responsive-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Sidebar collapsed state support */
+body.sidebar-collapsed .desktop-sidebar {
+  width: 80px !important;
+}
+body.sidebar-collapsed .desktop-sidebar .sidebar-text,
+body.sidebar-collapsed .desktop-sidebar .sidebar-heading,
+body.sidebar-collapsed .desktop-sidebar .sidebar-badge,
+body.sidebar-collapsed .desktop-sidebar .profile-details {
+  display: none !important;
+}
+body.sidebar-collapsed .desktop-sidebar .sidebar-link {
+  justify-content: center;
+  padding: 12px;
+}

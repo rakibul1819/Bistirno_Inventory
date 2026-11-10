@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Bistirno - Inventory Management</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            zinc: { 900: '#18181B', 800: '#27272A', 500: '#71717A', 400: '#A1A1AA', 200: '#E4E4E7', 100: '#F4F4F5', 50: '#F9FAFB' }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons & Chart.js CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body class="min-h-screen font-sans architect-grid-bg transition-colors duration-200">
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="mobile-sidebar-backdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+
+  <div class="flex h-screen overflow-hidden">
+    
+    <!-- ==================== DESKTOP & MOBILE SIDEBAR ==================== -->
+    <aside class="desktop-sidebar hidden lg:flex flex-col w-64 xl:w-72 bg-[#F9FAFB] border-r border-[#E4E4E7] z-50 transition-all flex-shrink-0 select-none">
+      
+      <!-- Studio Brand Header -->
+      <div class="p-5 border-b border-[#E4E4E7] flex items-center justify-between">
+        <a href="dashboard.html" onclick="return handleNav('dashboard', 'dashboard.html', event)" class="flex items-center gap-3 text-decoration-none cursor-pointer">
+          <div class="w-10 h-10 rounded-2xl bg-[#18181B] flex items-center justify-center text-white shadow-sm flex-shrink-0">
+            <i data-lucide="building-2" class="w-5 h-5 stroke-[2]"></i>
+          </div>
+          <div>
+            <h1 class="text-base font-bold font-display tracking-tight text-[#18181B] leading-tight">
+              Bistirno
+            </h1>
+            <span class="text-xs font-medium text-[#71717A] block">
+              Inventory Management
+            </span>
+          </div>
+        </a>
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-1.5 rounded-xl text-[#71717A] hover:bg-[#E4E4E7]" title="Close Menu">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Search Menu Bar (With live real-time filtering) -->
+      <div class="px-4 pt-4 pb-2">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-[#A1A1AA]"></i>
+          <input 
+            type="text" 
+            placeholder="Search menu" 
+            id="sidebar-search-input"
+            class="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-white border border-[#E4E4E7] text-[#18181B] placeholder-[#A1A1AA] focus:outline-none focus:border-[#18181B] transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 overflow-y-auto px-4 py-2 space-y-4">
+        
+        <!-- Active Dashboard -->
+        <div>
+          <a href="dashboard.html" data-view="dashboard" onclick="return handleNav('dashboard', 'dashboard.html', event)" class="sidebar-link active cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="home" class="w-4 h-4"></i>
+              <span class="sidebar-text">Dashboard</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Group: Inventory -->
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Inventory</div>
+          
+          <a href="dashboard.html?view=inventory" data-view="inventory" onclick="return handleNav('inventory', 'projects.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="box" class="w-4 h-4"></i>
+              <span class="sidebar-text">Products & Materials</span>
+            </div>
+            <span class="sidebar-badge">248</span>
+          </a>
+          <a href="dashboard.html?view=inventory" data-view="inventory" onclick="return handleNav('inventory', 'projects.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span class="sidebar-text">Categories</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" onclick="openStockInModal()" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-down-to-dot" class="w-4 h-4"></i>
+              <span class="sidebar-text">Stock In</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" onclick="openStockOutModal()" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-up-from-dot" class="w-4 h-4"></i>
+              <span class="sidebar-text">Stock Out</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=inventory" data-view="inventory" onclick="return handleNav('inventory', 'projects.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+              <span class="sidebar-text">Site Transfer</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Group: Projects -->
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Projects</div>
+
+          <a href="dashboard.html?view=projects" data-view="projects" onclick="return handleNav('projects', 'projects.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="building" class="w-4 h-4"></i>
+              <span class="sidebar-text">Project Allocation</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=projects" data-view="projects" onclick="return handleNav('projects', 'project-details.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              <span class="sidebar-text">Material Requests</span>
+            </div>
+            <span class="sidebar-badge">5</span>
+          </a>
+        </div>
+
+        <!-- Group: Procurement -->
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Procurement</div>
+
+          <a href="dashboard.html?view=financials" data-view="financials" onclick="return handleNav('financials', 'finance.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="tag" class="w-4 h-4"></i>
+              <span class="sidebar-text">Purchase Orders</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=customers" data-view="customers" onclick="return handleNav('customers', 'customers.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="truck" class="w-4 h-4"></i>
+              <span class="sidebar-text">Vendors</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Group: System -->
+        <div class="sidebar-nav-group">
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">System</div>
+
+          <a href="dashboard.html?view=reports" data-view="reports" onclick="return handleNav('reports', 'reports.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+              <span class="sidebar-text">Reports</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=employees" data-view="employees" onclick="return handleNav('employees', 'employees.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="users" class="w-4 h-4"></i>
+              <span class="sidebar-text">Employee Management</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=attendance" data-view="attendance" onclick="return handleNav('attendance', 'employees.html?tab=attendance', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="calendar-check-2" class="w-4 h-4"></i>
+              <span class="sidebar-text">Attendance Sheet</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=salaries" data-view="salaries" onclick="return handleNav('salaries', 'salaries.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="credit-card" class="w-4 h-4"></i>
+              <span class="sidebar-text">Salaries & Payroll</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=portfolio" data-view="portfolio" onclick="return handleNav('portfolio', 'portfolio.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="image" class="w-4 h-4"></i>
+              <span class="sidebar-text">Architecture Portfolio</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=reviews" data-view="reviews" onclick="return handleNav('reviews', 'reviews.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="star" class="w-4 h-4"></i>
+              <span class="sidebar-text">Ratings & Reviews</span>
+            </div>
+          </a>
+          <a href="dashboard.html?view=settings" data-view="settings" onclick="return handleNav('settings', 'settings.html', event)" class="sidebar-link cursor-pointer">
+            <div class="sidebar-link-content">
+              <i data-lucide="settings" class="w-4 h-4"></i>
+              <span class="sidebar-text">Settings</span>
+            </div>
+          </a>
+        </div>
+
+      </nav>
+
+      <!-- Bottom Admin User Profile Card (Working profile badge & role status) -->
+      <div class="sidebar-admin-card">
+        <a href="dashboard.html?view=settings" onclick="return handleNav('settings', 'settings.html', event)" class="sidebar-admin-card-inner group cursor-pointer" title="Open Admin Profile & Settings">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="relative flex-shrink-0">
+              <div class="w-8 h-8 rounded-xl bg-[#9CA3AF] text-white font-extrabold text-xs flex items-center justify-center font-display shadow-sm">A</div>
+              <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
+            </div>
+            <div class="min-w-0">
+              <h4 class="text-xs font-bold text-[#18181B] truncate">Alexander Vance</h4>
+              <span class="text-[10px] text-[#71717A] font-medium block truncate">Administrator · AIA</span>
+            </div>
+          </div>
+          <div class="p-1.5 rounded-xl hover:bg-[#F4F4F5] text-[#71717A] group-hover:text-[#18181B] transition-colors">
+            <i data-lucide="settings" class="w-4 h-4"></i>
+          </div>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- ==================== MAIN VIEW CONTAINER ==================== -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+      
+      <!-- Top Navigation Header (Exact match with reference) -->
+      <header class="h-20 bg-white border-b border-[#E4E4E7] px-6 md:px-8 flex items-center justify-between z-20 flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-[#71717A] hover:bg-[#F4F4F5]" title="Toggle Menu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <div>
+            <h2 id="current-view-title" class="text-xl md:text-2xl font-bold font-display text-[#18181B] tracking-tight">
+              Dashboard
+            </h2>
+            <p id="current-view-subtitle" class="text-xs text-[#71717A] mt-0.5">Stock, projects and purchases at a glance</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          
+          <!-- Topbar Icon Button: Theme Toggle (Sun) with dark outline as seen in image -->
+          <button onclick="toggleTheme()" class="topbar-icon-btn border-dark" title="Toggle Theme">
+            <i id="theme-toggle-icon" data-lucide="sun" class="w-5 h-5 stroke-[2]"></i>
+          </button>
+
+          <!-- Topbar Icon Button: Notifications (Bell) with Red Badge 7 -->
+          <a href="dashboard.html?view=notifications" onclick="return handleNav('notifications', 'notifications.html', event)" class="topbar-icon-btn relative bg-white cursor-pointer" title="Notifications">
+            <i data-lucide="bell" class="w-5 h-5 stroke-[1.8]"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#DC2626] text-white text-[10px] font-extrabold flex items-center justify-center">7</span>
+          </a>
+
+          <!-- Admin Pill Badge (Exact match: [ A Admin ]) -->
+          <a href="dashboard.html?view=settings" onclick="return handleNav('settings', 'settings.html', event)" class="admin-pill-badge cursor-pointer" title="Admin Profile & Settings">
+            <div class="admin-avatar-badge">A</div>
+            <span class="text-xs font-bold text-[#18181B]">Admin</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Dynamic View Area -->
+      <main id="main-content-container" class="flex-1 overflow-y-auto p-4 md:p-8">
+        <!-- Rendered dynamically by App & ui.js with smooth animation -->
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- ==================== ALL APPLICATION MODALS ==================== -->
+
+  <!-- 1. Modal: Add / Issue Stock -->
+  <div id="modal-add-stock" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 id="modal-stock-title" class="text-lg font-bold font-display text-[#18181B]">Add Stock to Inventory</h3>
+        <button onclick="closeModal('modal-add-stock')" class="text-[#71717A] hover:text-[#18181B]">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form onsubmit="handleQuickAddStock(event)" class="space-y-4">
+        <input type="hidden" id="modal-stock-mode" value="in" />
+        <div>
+          <label class="block text-xs font-bold text-[#18181B] mb-1">Material Name</label>
+          <input type="text" name="name" required placeholder="e.g. Italian Carrara Marble Slabs" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#18181B] mb-1">Category</label>
+            <select name="category" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none">
+              <option value="Stone & Marble">Stone & Marble</option>
+              <option value="Flooring">Flooring</option>
+              <option value="Wood & Millwork">Wood & Millwork</option>
+              <option value="Glass & Glazing">Glass & Glazing</option>
+              <option value="Lighting">Lighting</option>
+              <option value="Hardware & Fixtures">Hardware & Fixtures</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#18181B] mb-1">Stock Quantity</label>
+            <input type="number" name="stock" required placeholder="e.g. 50" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#18181B] mb-1">Unit Cost (TK)</label>
+            <input type="number" name="unitCost" required placeholder="e.g. 1500" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#18181B] mb-1">Min Reorder Level</label>
+            <input type="number" name="reorderLevel" required placeholder="e.g. 20" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none" />
+          </div>
+        </div>
+        <div class="flex justify-end gap-3 pt-4 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-stock')" class="btn-secondary">Cancel</button>
+          <button type="submit" id="modal-stock-submit-btn" class="btn-primary">+ Catalog Stock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Modal: Add Purchase Order -->
+  <div id="modal-add-purchase-order" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Create New Purchase Order</h3>
+        <button onclick="closeModal('modal-add-purchase-order')" class="text-[#71717A] hover:text-[#18181B]">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form onsubmit="handleQuickPO(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-[#18181B] mb-1">Vendor / Supplier</label>
+          <input type="text" name="vendor" required placeholder="e.g. Carrara Quarries Direct Ltd" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#18181B] mb-1">Material Item</label>
+            <input type="text" name="material" required placeholder="e.g. Italian Marble Slabs" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#18181B] mb-1">Estimated Amount (TK)</label>
+            <input type="number" name="amount" required placeholder="e.g. 450000" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-[#18181B] mb-1">Assigned Project</label>
+          <select name="project" class="w-full px-3 py-2 text-xs rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] focus:outline-none">
+            <option value="Montauk Oceanfront Villa">Montauk Oceanfront Villa</option>
+            <option value="Greenwich Stone & Timber Estate">Greenwich Stone & Timber Estate</option>
+            <option value="Zenith Tower Executive HQ">Zenith Tower Executive HQ</option>
+            <option value="Aura Wellness Resort & Spa">Aura Wellness Resort & Spa</option>
+            <option value="The Waterfront Pavilion">The Waterfront Pavilion</option>
+          </select>
+        </div>
+        <div class="flex justify-end gap-3 pt-4 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-purchase-order')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Submit Purchase Order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Modal: Add Project -->
+  <div id="modal-add-project" class="modal-overlay hidden">
+    <div class="modal-card max-w-2xl p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Create New Architectural Project</h3>
+        <button onclick="closeModal('modal-add-project')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreateProject(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Project Name</label>
+          <input type="text" name="name" required placeholder="e.g. Modernist Cliffside Villa" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Category</label>
+            <select name="category" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Residential Architecture">Residential Architecture</option>
+              <option value="Commercial Architecture">Commercial Architecture</option>
+              <option value="Interior Design Projects">Interior Design Projects</option>
+              <option value="Modern Building Designs">Modern Building Designs</option>
+              <option value="Exterior Design Projects">Exterior Design Projects</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Client Name</label>
+            <input type="text" name="client" list="clients-datalist" required placeholder="e.g. Horizon Real Estate" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+            <datalist id="clients-datalist"></datalist>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Total Budget (TK)</label>
+            <input type="number" name="budget" required placeholder="e.g. 8500000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Spent to Date (TK)</label>
+            <input type="number" name="spent" placeholder="e.g. 1200000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Site Location</label>
+            <input type="text" name="location" required placeholder="Gulshan-2, Dhaka" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Lead Architect</label>
+            <input type="text" name="lead" placeholder="Alexander Vance" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Start Date</label>
+            <input type="date" name="startDate" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Handover Date</label>
+            <input type="date" name="endDate" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Status</label>
+            <select name="status" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Ongoing">Ongoing</option>
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Cover Rendering URL</label>
+          <input type="url" name="image" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Architectural Brief & Scope</label>
+          <textarea name="description" rows="3" placeholder="Brief project overview, spatial requirements, design concept..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]"></textarea>
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-project')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">+ Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Modal: Project Details & Milestone Inspector -->
+  <div id="modal-project-details" class="modal-overlay hidden">
+    <div class="modal-card max-w-4xl p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Architectural Project Details</h3>
+        <button onclick="closeModal('modal-project-details')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="project-details-content">
+        <!-- Injected dynamically by App.showProjectDetails() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Modal: Add Employee -->
+  <div id="modal-add-employee" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Add Studio Team Member</h3>
+        <button onclick="closeModal('modal-add-employee')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreateEmployee(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Full Name</label>
+          <input type="text" name="name" required placeholder="e.g. Liam Sterling" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Designation / Role</label>
+            <input type="text" name="designation" required placeholder="Architectural Draftsman" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Department</label>
+            <select name="department" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Architecture & Design">Architecture & Design</option>
+              <option value="Interior & FF&E">Interior & FF&E</option>
+              <option value="Structural Engineering">Structural Engineering</option>
+              <option value="Studio Management">Studio Management</option>
+              <option value="Site Supervision">Site Supervision</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Email Address</label>
+            <input type="email" name="email" required placeholder="liam@archstudio.pro" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Phone Number</label>
+            <input type="tel" name="phone" placeholder="+880 1700-000000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Joining Date</label>
+            <input type="date" name="joiningDate" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Basic Salary (TK)</label>
+            <input type="number" name="basicSalary" required placeholder="65000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Status</label>
+            <select name="status" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Avatar Photo URL</label>
+            <input type="url" name="avatar" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-employee')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">+ Add Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Modal: Employee Profile & Attendance Details -->
+  <div id="modal-profile-details" class="modal-overlay hidden">
+    <div class="modal-card max-w-xl p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Employee Profile & Attendance</h3>
+        <button onclick="closeModal('modal-profile-details')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="profile-details-content">
+        <!-- Injected dynamically by App.viewEmployeeProfile() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Modal: Add Customer / Client -->
+  <div id="modal-add-customer" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Register Client or Vendor</h3>
+        <button onclick="closeModal('modal-add-customer')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreateCustomer(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Representative / Contact Name</label>
+          <input type="text" name="name" required placeholder="e.g. Elena Rostova" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Company / Organization</label>
+            <input type="text" name="company" placeholder="Elysium Residences Ltd." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Relationship Status</label>
+            <select name="status" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Active Client">Active Client</option>
+              <option value="VIP">VIP Client</option>
+              <option value="Lead">Prospective Lead</option>
+              <option value="Past Client">Past Client</option>
+              <option value="Vendor">Material Vendor</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Email Address</label>
+            <input type="email" name="email" required placeholder="elena@elysium.com" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Phone Number</label>
+            <input type="tel" name="phone" placeholder="+880 1800-000000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Office / Headquarter Address</label>
+          <input type="text" name="address" placeholder="Banani DOHS, Dhaka" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Initial Commissioned Budget (TK)</label>
+          <input type="number" name="totalSpent" placeholder="e.g. 5000000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-customer')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">+ Register Client</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. Modal: Customer Details & Communication Log -->
+  <div id="modal-customer-details" class="modal-overlay hidden">
+    <div class="modal-card max-w-2xl p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Client Profile & Communication History</h3>
+        <button onclick="closeModal('modal-customer-details')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="customer-details-content">
+        <!-- Injected dynamically by App.viewCustomerProfile() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Modal: Add Salary Statement -->
+  <div id="modal-add-salary" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Disburse Monthly Employee Compensation</h3>
+        <button onclick="closeModal('modal-add-salary')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreateSalary(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Select Employee</label>
+          <select id="salary-employee-select" name="employeeId" required onchange="window.app.onSalaryEmployeeSelect(this.value)" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+            <option value="">-- Choose Employee --</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Pay Period / Month</label>
+            <input type="text" name="month" required placeholder="October 2024" value="October 2024" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Basic Salary (TK)</label>
+            <input type="number" id="salary-basic-input" name="basicSalary" required placeholder="65000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Project Bonus / Allowance (TK)</label>
+            <input type="number" name="bonus" placeholder="0" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Tax & Deductions (TK)</label>
+            <input type="number" name="deductions" placeholder="0" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Disbursement Status</label>
+            <select name="status" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Paid">Disbursed (Paid)</option>
+              <option value="Pending">Pending Approval</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Payment Voucher Notes</label>
+            <input type="text" name="notes" placeholder="e.g. Bank wire via City Bank" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-salary')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Disburse Statement</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 10. Modal: Printable Pay Slip -->
+  <div id="modal-view-payslip" class="modal-overlay hidden">
+    <div class="modal-card max-w-3xl p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Official Employee Salary Pay Slip</h3>
+        <button onclick="closeModal('modal-view-payslip')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="payslip-modal-content">
+        <!-- Injected dynamically by App.viewPaySlip() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Modal: Add Inventory Material -->
+  <div id="modal-add-inventory" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Catalog New Material in Inventory</h3>
+        <button onclick="closeModal('modal-add-inventory')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreateInventory(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Material / Spec Name</label>
+          <input type="text" name="name" required placeholder="e.g. Nordic Ash Acoustic Slat Panels" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Category</label>
+            <select name="category" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Stone & Marble">Stone & Marble</option>
+              <option value="Wood & Millwork">Wood & Millwork</option>
+              <option value="Glass & Glazing">Glass & Glazing</option>
+              <option value="Lighting">Lighting</option>
+              <option value="Flooring">Flooring</option>
+              <option value="Hardware & Fixtures">Hardware & Fixtures</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">SKU / Code</label>
+            <input type="text" name="sku" placeholder="MAT-9421" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Current Quantity</label>
+            <input type="number" name="stock" required placeholder="120" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Measurement Unit</label>
+            <input type="text" name="unit" required placeholder="sq ft, units, bundles" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Unit Cost (TK)</label>
+            <input type="number" name="unitCost" required placeholder="1850" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Min Reorder Threshold</label>
+            <input type="number" name="reorderLevel" placeholder="15" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Primary Supplier</label>
+            <input type="text" name="supplier" placeholder="Nordic Timber Co" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Warehouse Location</label>
+            <input type="text" name="location" placeholder="Warehouse Bay 4" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-inventory')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">+ Catalog Material</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 12. Modal: Add Financial Transaction -->
+  <div id="modal-add-transaction" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Record Financial Ledger Transaction</h3>
+        <button onclick="closeModal('modal-add-transaction')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreateTransaction(event)" class="space-y-4 text-xs">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Transaction Type</label>
+            <select name="type" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Income">Income (Revenue / Retainer)</option>
+              <option value="Expense">Expense (Cost / Material / Payroll)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Category</label>
+            <select name="category" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Client Retainer">Client Retainer</option>
+              <option value="Material Purchase">Material Purchase</option>
+              <option value="Payroll Disbursement">Payroll Disbursement</option>
+              <option value="Structural Engineering">Structural Engineering</option>
+              <option value="Site Logistics">Site Logistics</option>
+              <option value="Studio Utilities">Studio Utilities</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Amount (TK)</label>
+            <input type="number" name="amount" required placeholder="e.g. 250000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Transaction Date</label>
+            <input type="date" name="date" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Reference / Voucher Code</label>
+          <input type="text" name="reference" placeholder="e.g. INV-2024-089 or PO-8821" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Ledger Notes & Description</label>
+          <textarea name="notes" rows="2" placeholder="Project milestone phase or vendor remarks..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]"></textarea>
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-transaction')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">+ Record Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 13. Modal: Add Review -->
+  <div id="modal-add-review" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Submit Verified Client Testimonial</h3>
+        <button onclick="closeModal('modal-add-review')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreateReview(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Client Full Name</label>
+          <input type="text" name="customerName" required placeholder="e.g. Henry Kensington" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Organization / Company</label>
+            <input type="text" name="company" placeholder="Kensington Properties Ltd" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Project Name</label>
+            <input type="text" name="projectName" required placeholder="Zenith Tower HQ" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Star Rating (1 - 5)</label>
+            <select name="rating" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="5">★★★★★ 5 Stars (Exceptional)</option>
+              <option value="4">★★★★☆ 4 Stars (Excellent)</option>
+              <option value="3">★★★☆☆ 3 Stars (Good)</option>
+              <option value="2">★★☆☆☆ 2 Stars (Fair)</option>
+              <option value="1">★☆☆☆☆ 1 Star (Poor)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Service Category</label>
+            <select name="category" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Architecture">Full Architecture</option>
+              <option value="Interior Design">Interior Design & FF&E</option>
+              <option value="Construction Supervision">Construction Supervision</option>
+              <option value="Consulting">Consulting</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Review Headline</label>
+          <input type="text" name="title" required placeholder="e.g. Masterful spatial design and on-time execution" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Testimonial Remarks</label>
+          <textarea name="comment" rows="3" required placeholder="Describe your experience collaborating with Bistirno ArchStudio..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]"></textarea>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="rev-featured" name="featured" class="rounded border-[#E4E4E7] text-amber-500 focus:ring-0" />
+          <label for="rev-featured" class="text-xs text-[#71717A]">Feature this testimonial prominently in architecture portfolio</label>
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-review')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">+ Submit Testimonial</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 14. Modal: Add Portfolio Project -->
+  <div id="modal-add-portfolio" class="modal-overlay hidden">
+    <div class="modal-card max-w-lg p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B]">Add Work to Architecture Portfolio</h3>
+        <button onclick="closeModal('modal-add-portfolio')" class="text-[#71717A] hover:text-[#18181B]"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form onsubmit="window.app.handleCreatePortfolio(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Showcase Title</label>
+          <input type="text" name="title" required placeholder="e.g. The Monolith Glass Pavilion" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Portfolio Category</label>
+            <select name="category" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]">
+              <option value="Modern Building Designs">Modern Building Designs</option>
+              <option value="Residential Architecture">Residential Architecture</option>
+              <option value="Commercial Architecture">Commercial Architecture</option>
+              <option value="Interior Design Projects">Interior Design Projects</option>
+              <option value="Exterior Design Projects">Exterior Design Projects</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Location</label>
+            <input type="text" name="location" required placeholder="Banani, Dhaka" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Completion Year</label>
+            <input type="text" name="year" placeholder="2024" value="2024" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Built Area</label>
+            <input type="text" name="area" placeholder="18,500 sq ft" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B]">Principal Architect</label>
+            <input type="text" name="architect" placeholder="Alexander Vance" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">High-Res Architectural Photo URL</label>
+          <input type="url" name="image" required placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]" />
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B]">Design Concept & Spatial Brief</label>
+          <textarea name="description" rows="3" placeholder="Minimalist concrete framework, floor-to-ceiling curtain glass..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] border border-[#E4E4E7] text-[#18181B]"></textarea>
+        </div>
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7]">
+          <button type="button" onclick="closeModal('modal-add-portfolio')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">+ Add to Portfolio</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 15. Modal: Lightbox Architectural Image Inspector -->
+  <div id="modal-lightbox" class="modal-overlay hidden" onclick="closeModal('modal-lightbox')">
+    <div class="max-w-4xl w-full p-4" onclick="event.stopPropagation()">
+      <div class="bg-black/95 backdrop-blur-xl rounded-3xl p-6 border border-white/10 text-white shadow-2xl relative">
+        <button onclick="closeModal('modal-lightbox')" class="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all"><i data-lucide="x" class="w-6 h-6"></i></button>
+        <img id="lightbox-img" src="" alt="Architectural Showcase" class="w-full max-h-[70vh] object-cover rounded-2xl shadow-lg" />
+        <div class="mt-5">
+          <div class="flex items-center justify-between">
+            <h3 id="lightbox-title" class="text-xl md:text-2xl font-bold font-display text-white"></h3>
+            <span id="lightbox-loc" class="text-xs font-semibold px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30"></span>
+          </div>
+          <p id="lightbox-desc" class="text-xs md:text-sm text-slate-300 mt-2 leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Shared JS Files -->
+  <script src="../js/data.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function switchMovementTab(btn, range) {
+      if (window.app && window.app.switchMovementTab) {
+        window.app.switchMovementTab(range);
+      } else {
+        document.querySelectorAll(".time-tab").forEach(t => t.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+      }
+    }
+
+    function toggleTheme() {
+      if (window.app && window.app.toggleTheme) {
+        window.app.toggleTheme();
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("archstudio_theme", "light");
+      }
+    }
+
+    function handleNav(view, fallbackUrl, event) {
+      if (window.app && window.app.navigate) {
+        if (event) event.preventDefault();
+        window.app.navigate(view);
+        window.closeMobileMenu();
+        return false;
+      }
+      return true;
+    }
+
+    function toggleMobileMenu() {
+      if (window.app && window.app.toggleMobileMenu) {
+        window.app.toggleMobileMenu();
+      } else {
+        const sidebar = document.querySelector(".desktop-sidebar");
+        const backdrop = document.getElementById("mobile-sidebar-backdrop");
+        if (sidebar) {
+          const isHidden = sidebar.classList.contains("hidden");
+          if (isHidden) {
+            sidebar.classList.remove("hidden");
+            sidebar.classList.add("fixed", "inset-y-0", "left-0", "z-50", "flex", "shadow-2xl");
+            if (backdrop) backdrop.classList.remove("hidden");
+          } else {
+            sidebar.classList.add("hidden");
+            sidebar.classList.remove("fixed", "inset-y-0", "left-0", "z-50", "flex", "shadow-2xl");
+            if (backdrop) backdrop.classList.add("hidden");
+          }
+        }
+      }
+    }
+
+    function openModal(id) {
+      if (window.app && window.app.openModal) {
+        window.app.openModal(id);
+      } else {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.remove("hidden");
+          el.classList.add("flex");
+          document.body.classList.add("overflow-hidden");
+          if (window.lucide) lucide.createIcons();
+        }
+      }
+    }
+
+    function closeModal(id) {
+      if (window.app && window.app.closeModal) {
+        window.app.closeModal(id);
+      } else {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add("hidden");
+          el.classList.remove("flex");
+          document.body.classList.remove("overflow-hidden");
+        }
+      }
+    }
+
+    function openStockInModal() {
+      if (window.app && window.app.openStockInModal) {
+        window.app.openStockInModal();
+      } else {
+        openModal("modal-add-stock");
+      }
+    }
+
+    function openStockOutModal() {
+      if (window.app && window.app.openStockOutModal) {
+        window.app.openStockOutModal();
+      } else {
+        openModal("modal-add-stock");
+      }
+    }
+
+    function handleQuickAddStock(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const category = form.category.value;
+      const stock = Number(form.stock.value);
+      const unitCost = Number(form.unitCost.value);
+      const reorderLevel = Number(form.reorderLevel.value);
+      const mode = (document.getElementById("modal-stock-mode")?.value) || "in";
+
+      if (window.store) {
+        window.store.addInventoryItem({
+          name, category, stock, unitCost, reorderLevel,
+          sku: "MAT-" + Date.now().toString().slice(-4),
+          unit: "units",
+          supplier: "Studio Primary Supplier",
+          status: stock <= reorderLevel ? "Low Stock" : "In Stock"
+        });
+      }
+      closeModal("modal-add-stock");
+      form.reset();
+      if (window.app && window.app.showToast) {
+        window.app.showToast(mode === "out" ? "Material stock issued to site!" : "Material stock added to inventory!", "success");
+      }
+      if (window.app) window.app.renderCurrentView();
+    }
+
+    function handleQuickPO(e) {
+      e.preventDefault();
+      closeModal("modal-add-purchase-order");
+      e.target.reset();
+      if (window.app && window.app.showToast) {
+        window.app.showToast("Purchase Order submitted for executive approval!", "success");
+      }
+    }
+  </script>
+</body>
+</html>

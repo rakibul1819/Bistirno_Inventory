@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Bistirno ArchStudio Pro</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif']
+          },
+          colors: { amber: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' } }
+        }
+      }
+    };
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/projects.css" />
+</head>
+<body class="min-h-screen font-sans architect-grid-bg transition-colors duration-200">
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="mobile-sidebar-backdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+
+  <div class="flex h-screen overflow-hidden">
+    
+    <!-- ==================== DESKTOP SIDEBAR ==================== -->
+    <aside class="desktop-sidebar hidden lg:flex flex-col w-64 xl:w-72 bg-[#F9FAFB] border-r border-[#E4E4E7] z-50 transition-all flex-shrink-0 select-none">
+      
+      <!-- Studio Brand Header -->
+      <div class="p-5 border-b border-[#E4E4E7] flex items-center justify-between">
+        <a href="dashboard.html" class="flex items-center gap-3 text-decoration-none">
+          <div class="w-10 h-10 rounded-2xl bg-[#18181B] flex items-center justify-center text-white shadow-sm flex-shrink-0">
+            <i data-lucide="building-2" class="w-5 h-5 stroke-[2]"></i>
+          </div>
+          <div>
+            <h1 class="text-base font-bold font-display tracking-tight text-[#18181B] leading-tight">
+              Bistirno
+            </h1>
+            <span class="text-xs font-medium text-[#71717A] block">
+              Inventory Management
+            </span>
+          </div>
+        </a>
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-1.5 rounded-xl text-[#71717A] hover:bg-[#E4E4E7]" title="Close Menu">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Search Menu Bar -->
+      <div class="px-4 pt-4 pb-2">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-[#A1A1AA]"></i>
+          <input 
+            type="text" 
+            placeholder="Search menu" 
+            class="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-white border border-[#E4E4E7] text-[#18181B] placeholder-[#A1A1AA] focus:outline-none focus:border-[#18181B] transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 overflow-y-auto px-4 py-2 space-y-4">
+        <div>
+          <a href="dashboard.html?view=inventory" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="home" class="w-4 h-4"></i>
+              <span class="sidebar-text">Dashboard</span>
+            </div>
+          </a>
+        </div>
+
+        <div>
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Inventory</div>
+          <a href="projects.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="box" class="w-4 h-4"></i>
+              <span class="sidebar-text">Products & Materials</span>
+            </div>
+            <span class="sidebar-badge">248</span>
+          </a>
+          <a href="projects.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span class="sidebar-text">Categories</span>
+            </div>
+          </a>
+          <a href="finance.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-down-to-dot" class="w-4 h-4"></i>
+              <span class="sidebar-text">Stock In</span>
+            </div>
+          </a>
+          <a href="finance.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="arrow-up-from-dot" class="w-4 h-4"></i>
+              <span class="sidebar-text">Stock Out</span>
+            </div>
+          </a>
+        </div>
+
+        <div>
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Projects</div>
+          <a href="projects.html" class="sidebar-link active">
+            <div class="sidebar-link-content">
+              <i data-lucide="building" class="w-4 h-4"></i>
+              <span class="sidebar-text">Project Allocation</span>
+            </div>
+          </a>
+          <a href="project-details.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              <span class="sidebar-text">Material Requests</span>
+            </div>
+            <span class="sidebar-badge">5</span>
+          </a>
+        </div>
+
+        <div>
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">Procurement</div>
+          <a href="finance.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="tag" class="w-4 h-4"></i>
+              <span class="sidebar-text">Purchase Orders</span>
+            </div>
+          </a>
+          <a href="customers.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="truck" class="w-4 h-4"></i>
+              <span class="sidebar-text">Vendors</span>
+            </div>
+          </a>
+        </div>
+
+        <div>
+          <div class="px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA]">System</div>
+          <a href="reports.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+              <span class="sidebar-text">Reports</span>
+            </div>
+          </a>
+          <a href="employees.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="users" class="w-4 h-4"></i>
+              <span class="sidebar-text">Employee Management</span>
+            </div>
+          </a>
+          <a href="employees.html?tab=attendance" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="calendar-check-2" class="w-4 h-4"></i>
+              <span class="sidebar-text">Attendance Sheet</span>
+            </div>
+          </a>
+          <a href="salaries.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="credit-card" class="w-4 h-4"></i>
+              <span class="sidebar-text">Salaries & Payroll</span>
+            </div>
+          </a>
+          <a href="portfolio.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="image" class="w-4 h-4"></i>
+              <span class="sidebar-text">Portfolio</span>
+            </div>
+          </a>
+          <a href="settings.html" class="sidebar-link">
+            <div class="sidebar-link-content">
+              <i data-lucide="settings" class="w-4 h-4"></i>
+              <span class="sidebar-text">Settings</span>
+            </div>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+      
+      <header class="h-20 bg-white border-b border-[#E4E4E7] px-6 md:px-8 flex items-center justify-between z-20 flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <div>
+            <h2 class="text-xl md:text-2xl font-bold font-display text-[#18181B] tracking-tight">
+              Project Allocation
+            </h2>
+            <p class="text-xs text-[#71717A] mt-0.5">Architecture & Interior Site Management</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="openModal('modal-add-project')" class="btn-primary py-2 px-3.5 text-xs">
+            <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5]"></i> New Project
+          </button>
+          <button onclick="toggleTheme()" class="topbar-icon-btn border-dark" title="Toggle Theme">
+            <i id="theme-toggle-icon" data-lucide="sun" class="w-5 h-5 stroke-[2]"></i>
+          </button>
+          <a href="notifications.html" class="topbar-icon-btn relative bg-white" title="Notifications">
+            <i data-lucide="bell" class="w-5 h-5 stroke-[1.8]"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#DC2626] text-white text-[10px] font-extrabold flex items-center justify-center">7</span>
+          </a>
+          <a href="settings.html" class="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-white border border-[#E4E4E7] hover:bg-[#F4F4F5] transition-all" title="Admin Profile">
+            <div class="admin-avatar-badge">A</div>
+            <span class="text-xs font-bold text-[#18181B]">Admin</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="flex-1 overflow-y-auto p-4 md:p-8">
+        
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="relative flex-1 max-w-md">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-400"></i>
+            <input 
+              type="text" 
+              id="prj-search" 
+              oninput="filterProjectList()" 
+              placeholder="Search by project title, code, client, location..." 
+              class="w-full pl-10 pr-4 py-2 text-sm rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none"
+            />
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <select id="prj-status" onchange="filterProjectList()" class="px-3 py-2 text-sm rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+              <option value="All">All Statuses</option>
+              <option value="Ongoing">Ongoing</option>
+              <option value="Completed">Completed</option>
+              <option value="Pending">Pending</option>
+            </select>
+
+            <select id="prj-cat" onchange="filterProjectList()" class="px-3 py-2 text-sm rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+              <option value="All">All Categories</option>
+              <option value="Residential Architecture">Residential</option>
+              <option value="Commercial Architecture">Commercial</option>
+              <option value="Interior Design Projects">Interior Design</option>
+              <option value="Modern Building Designs">Modern Building</option>
+              <option value="Exterior Design Projects">Exterior & Landscape</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- Modal: Create Project -->
+  <div id="modal-add-project" class="modal-overlay hidden">
+    <div class="modal-card max-w-2xl p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-[#E4E4E7] dark:border-[#27272A] mb-4">
+        <h3 class="text-lg font-bold font-display text-[#18181B] dark:text-[#FAFAFA]">Create New Project</h3>
+        <button onclick="closeModal('modal-add-project')" class="text-[#71717A] hover:text-[#18181B] dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form onsubmit="handleCreateProject(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Project Name</label>
+          <input type="text" name="name" required placeholder="e.g. Modernist Cliffside Villa" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Category</label>
+            <select name="category" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]">
+              <option value="Residential Architecture">Residential Architecture</option>
+              <option value="Commercial Architecture">Commercial Architecture</option>
+              <option value="Interior Design Projects">Interior Design Projects</option>
+              <option value="Modern Building Designs">Modern Building Designs</option>
+              <option value="Exterior Design Projects">Exterior Design Projects</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Client Name</label>
+            <input type="text" name="client" required placeholder="Client or Firm Name" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Total Budget (TK)</label>
+            <input type="number" name="budget" required min="1000" placeholder="18500000" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Initial Spent (TK)</label>
+            <input type="number" name="spent" value="0" min="0" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Location</label>
+            <input type="text" name="location" required placeholder="e.g. Montauk, NY" class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Lead Architect</label>
+            <input type="text" name="lead" value="Alexander Vance" required class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Start Date</label>
+            <input type="date" name="startDate" required class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Target Handover</label>
+            <input type="date" name="endDate" required class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Render Image URL</label>
+          <input type="url" name="image" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]" />
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1 text-[#18181B] dark:text-[#FAFAFA]">Architectural Narrative</label>
+          <textarea name="description" rows="3" required placeholder="Spatial planning, materiality, structural intent..." class="w-full px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46] text-[#18181B] dark:text-[#FAFAFA]"></textarea>
+        </div>
+
+        <div class="pt-4 flex justify-end gap-2 border-t border-[#E4E4E7] dark:border-[#27272A]">
+          <button type="button" onclick="closeModal('modal-add-project')" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Create Commission</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Shared Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function renderProjects() {
+      const list = window.store.getProjects();
+      const curr = "TK ";
+      const container = document.getElementById("projects-container");
+
+      container.innerHTML = list.map(p => `
+        <div class="project-card group bg-white dark:bg-[#18181B] rounded-3xl overflow-hidden border border-[#E4E4E7] dark:border-[#27272A] shadow-sm flex flex-col justify-between" data-category="${p.category}" data-status="${p.status}">
+          <div>
+            <div class="project-card-image cursor-pointer" onclick="window.location.href='project-details.html?id=${p.id}'">
+              <img src="${p.gallery[0]}" alt="" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+              <div class="absolute top-3 left-3">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-black/60 backdrop-blur-md text-white font-mono">${p.id}</span>
+              </div>
+              <div class="absolute top-3 right-3">
+                <span class="badge-status ${p.status === 'Ongoing' ? 'badge-ongoing' : p.status === 'Completed' ? 'badge-completed' : 'badge-pending'}">${p.status}</span>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">${window.uiRenderer.escapeHTML(p.category)}</span>
+                <h3 class="text-base font-bold text-white truncate">${window.uiRenderer.escapeHTML(p.name)}</h3>
+              </div>
+            </div>
+
+            <div class="p-5">
+              <p class="text-xs text-[#71717A] dark:text-[#A1A1AA] line-clamp-2 mb-4">${window.uiRenderer.escapeHTML(p.description)}</p>
+
+              <div class="grid grid-cols-2 gap-2 text-xs mb-4 p-3 rounded-2xl bg-[#F9FAFB] dark:bg-[#27272A] border border-[#E4E4E7] dark:border-[#3F3F46]">
+                <div>
+                  <span class="text-[#A1A1AA] block text-[10px] uppercase font-semibold">Client</span>
+                  <span class="font-medium text-[#18181B] dark:text-[#FAFAFA] truncate block">${window.uiRenderer.escapeHTML(p.client)}</span>
+                </div>
+                <div>
+                  <span class="text-[#A1A1AA] block text-[10px] uppercase font-semibold">Location</span>
+                  <span class="font-medium text-[#18181B] dark:text-[#FAFAFA] truncate block">${window.uiRenderer.escapeHTML(p.location)}</span>
+                </div>
+                <div class="mt-2">
+                  <span class="text-[#A1A1AA] block text-[10px] uppercase font-semibold">Budget</span>
+                  <span class="font-bold text-[#18181B] dark:text-[#FAFAFA]">${curr}${Number(p.budget).toLocaleString()}</span>
+                </div>
+                <div class="mt-2">
+                  <span class="text-[#A1A1AA] block text-[10px] uppercase font-semibold">Spent</span>
+                  <span class="font-bold ${p.spent > p.budget ? 'text-rose-500' : 'text-[#71717A] dark:text-[#A1A1AA]'}">${curr}${Number(p.spent).toLocaleString()}</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="text-[#A1A1AA]">Design & Execution</span>
+                  <span class="font-bold text-[#18181B] dark:text-[#FAFAFA]">${p.progress}%</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-[#E4E4E7] dark:bg-[#3F3F46] overflow-hidden">
+                  <div class="h-full rounded-full ${p.progress === 100 ? 'bg-emerald-500' : 'bg-amber-500'}" style="width: ${p.progress}%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 bg-[#F9FAFB] dark:bg-[#27272A] border-t border-[#E4E4E7] dark:border-[#3F3F46] flex items-center justify-between">
+            <span class="text-xs text-[#71717A] dark:text-[#A1A1AA]"><i data-lucide="user" class="w-3.5 h-3.5 inline mr-1"></i> ${window.uiRenderer.escapeHTML(p.lead)}</span>
+            <div class="flex items-center gap-2">
+              <a href="project-details.html?id=${p.id}" class="text-xs font-semibold text-[#18181B] dark:text-[#FAFAFA] hover:underline">Details & Blueprint</a>
+              <button onclick="deletePrj('${p.id}')" class="p-1 rounded text-[#71717A] hover:text-rose-500">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+      lucide.createIcons();
+    }
+
+    function filterProjectList() {
+      const q = document.getElementById("prj-search").value.toLowerCase();
+      const status = document.getElementById("prj-status").value;
+      const cat = document.getElementById("prj-cat").value;
+
+      document.querySelectorAll(".project-card").forEach(c => {
+        const text = c.textContent.toLowerCase();
+        const mStatus = status === "All" || c.getAttribute("data-status") === status;
+        const mCat = cat === "All" || c.getAttribute("data-category") === cat;
+        c.style.display = (text.includes(q) && mStatus && mCat) ? "flex" : "none";
+      });
+    }
+
+    function deletePrj(id) {
+      if (confirm("Delete this project?")) {
+        window.store.deleteProject(id);
+        renderProjects();
+        window.app.showToast("Project removed", "info");
+      }
+    }
+
+    function handleCreateProject(e) {
+      e.preventDefault();
+      const form = e.target;
+      const fd = new FormData(form);
+      window.store.addProject({
+        name: fd.get("name"),
+        category: fd.get("category"),
+        client: fd.get("client"),
+        budget: Number(fd.get("budget")),
+        spent: Number(fd.get("spent") || 0),
+        location: fd.get("location"),
+        lead: fd.get("lead"),
+        startDate: fd.get("startDate"),
+        endDate: fd.get("endDate"),
+        description: fd.get("description"),
+        gallery: fd.get("image") ? [fd.get("image")] : [
+          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+        ]
+      });
+      closeModal("modal-add-project");
+      form.reset();
+      renderProjects();
+      window.app.showToast("Project created successfully!");
+    }
+
+    function openModal(id) { document.getElementById(id).classList.remove("hidden"); }
+    function closeModal(id) { document.getElementById(id).classList.add("hidden"); }
+
+    function toggleMobileMenu() {
+      if (window.app && window.app.toggleMobileMenu) {
+        window.app.toggleMobileMenu();
+      } else {
+        const sidebar = document.querySelector(".desktop-sidebar");
+        const backdrop = document.getElementById("mobile-sidebar-backdrop");
+        if (sidebar) {
+          const isHidden = sidebar.classList.contains("hidden");
+          if (isHidden) {
+            sidebar.classList.remove("hidden");
+            sidebar.classList.add("fixed", "inset-y-0", "left-0", "z-50", "flex", "shadow-2xl");
+            if (backdrop) backdrop.classList.remove("hidden");
+          } else {
+            sidebar.classList.add("hidden");
+            sidebar.classList.remove("fixed", "inset-y-0", "left-0", "z-50", "flex", "shadow-2xl");
+            if (backdrop) backdrop.classList.add("hidden");
+          }
+        }
+      }
+    }
+
+        function toggleTheme() {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("archstudio_theme", "light");
+      const icon = document.getElementById("theme-toggle-icon");
+      if (icon) {
+        icon.setAttribute("data-lucide", "sun");
+        lucide.createIcons();
+      }
+      if (window.app && window.app.showToast) {
+        window.app.showToast("Light architectural background is permanently active", "info");
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderProjects();
+      const searchInput = document.getElementById("sidebar-search-input");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          const q = (e.target.value || "").toLowerCase().trim();
+          document.querySelectorAll(".sidebar-link").forEach(link => {
+            const text = link.textContent.toLowerCase();
+            link.style.display = (!q || text.includes(q)) ? "flex" : "none";
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Bistirno - ArchStudio Pro | Employees & Attendance Stylesheet
+   Minimalist Architectural Palette: #F4F4F5, #F9FAFB, #FFFFFF, #18181B, #71717A
+   ========================================================================== */
+
+/* Employee Card */
+.employee-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E4E4E7 !important;
+  border-radius: 24px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.employee-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+}
+
+.avatar-ring {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.4);
+}
+
+/* Segmented Tab Navigation */
+.emp-tab-nav {
+  display: inline-flex;
+  align-items: center;
+  background-color: #F4F4F5;
+  border: 1px solid #E4E4E7;
+  padding: 4px;
+  border-radius: 16px;
+  gap: 4px;
+}
+
+.emp-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #71717A;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.emp-tab-btn:hover {
+  color: #18181B;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.emp-tab-btn.active {
+  background-color: #18181B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Metric / KPI Card */
+.emp-stat-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Attendance Status Toggle Buttons */
+.btn-att-toggle {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-att-present {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+.btn-att-present:hover,
+.btn-att-present.active {
+  background-color: #059669 !important;
+  color: #FFFFFF !important;
+  border-color: #059669 !important;
+}
+
+.btn-att-late {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border-color: rgba(245, 158, 11, 0.2);
+}
+.btn-att-late:hover,
+.btn-att-late.active {
+  background-color: #d97706 !important;
+  color: #FFFFFF !important;
+  border-color: #d97706 !important;
+}
+
+.btn-att-leave {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+.btn-att-leave:hover,
+.btn-att-leave.active {
+  background-color: #2563eb !important;
+  color: #FFFFFF !important;
+  border-color: #2563eb !important;
+}
+
+.btn-att-absent {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border-color: rgba(239, 68, 68, 0.2);
+}
+.btn-att-absent:hover,
+.btn-att-absent.active {
+  background-color: #dc2626 !important;
+  color: #FFFFFF !important;
+  border-color: #dc2626 !important;
+}
+
+/* 30-Day Attendance Matrix Table */
+.attendance-matrix-wrapper {
+  overflow-x: auto;
+  border-radius: 20px;
+  border: 1px solid #E4E4E7;
+  background-color: #FFFFFF;
+}
+
+.attendance-matrix-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 11px;
+}
+
+.attendance-matrix-table th,
+.attendance-matrix-table td {
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid #F4F4F5;
+}
+
+.attendance-matrix-table th {
+  background-color: #F9FAFB;
+  font-weight: 700;
+  color: #71717A;
+}
+
+.matrix-emp-col {
+  position: sticky;
+  left: 0;
+  background-color: #FFFFFF;
+  z-index: 10;
+  text-align: left !important;
+  padding-left: 16px !important;
+  min-width: 180px;
+  border-right: 1px solid #E4E4E7;
+}
+
+.attendance-matrix-table th.matrix-emp-col {
+  background-color: #F9FAFB;
+}
+
+/* Status dots in matrix */
+.matrix-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.matrix-p {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #059669;
+}
+
+.matrix-l {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #d97706;
+}
+
+.matrix-o {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #2563eb;
+}
+
+.matrix-a {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #dc2626;
+}
