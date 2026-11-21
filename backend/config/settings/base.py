@@ -21,6 +21,7 @@ ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '127.0.0.1,
 
 # Application definition
 DJANGO_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -162,4 +163,159 @@ CORS_ALLOW_ALL_ORIGINS = os.getenv('CORS_ALLOW_ALL_ORIGINS', 'True').lower() == 
 CORS_ALLOWED_ORIGINS = [
     origin.strip() for origin in os.getenv('CORS_ALLOWED_ORIGINS', 'http://127.0.0.1:5500,http://localhost:5500').split(',') if origin.strip()
 ]
+
+# Jazzmin Admin Theme Configuration
+JAZZMIN_SETTINGS = {
+    # ── Branding ──
+    "site_title": "Bistirno Studio",
+    "site_header": "Bistirno ArchStudio Pro",
+    "site_brand": "Bistirno",
+    "site_logo": None,
+    "login_logo": None,
+    "login_logo_dark": None,
+    "site_logo_classes": "img-circle",
+    "site_icon": None,
+    "welcome_sign": "Welcome to Bistirno ArchStudio Management",
+    "copyright": "© 2026 Bistirno ArchStudio Pro — Architecture & Inventory",
+
+    # ── Global Search ──
+    "search_model": [
+        "authentication.User",
+        "employees.Employee",
+        "customers.Customer",
+        "projects.Project",
+        "finance.Invoice",
+    ],
+    "user_avatar": "profile_image",
+
+    # ── Top Navigation Links ──
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "API Swagger", "url": "/api/docs/", "new_window": True},
+        {"name": "API ReDoc", "url": "/api/redoc/", "new_window": True},
+        {"app": "projects"},
+    ],
+
+    # ── User Menu ──
+    "usermenu_links": [
+        {"name": "My Profile", "url": "/admin/authentication/user/", "icon": "fas fa-user"},
+        {"name": "API Docs", "url": "/api/docs/", "new_window": True, "icon": "fas fa-book"},
+    ],
+
+    # ── Sidebar ──
+    "show_sidebar": True,
+    "navigation_expanded": False,
+    "hide_apps": [],
+    "hide_models": [],
+
+    # ── App Ordering (top → bottom in sidebar) ──
+    "order_with_respect_to": [
+        "authentication",
+        "employees",
+        "customers",
+        "projects",
+        "finance",
+        "reports",
+        "auth",
+    ],
+
+    # ── Custom Sidebar Links ──
+    "custom_links": {
+        "projects": [{
+            "name": "Portfolio Showcase",
+            "url": "/admin/projects/projectrender/?is_showcase__exact=1",
+            "icon": "fas fa-award",
+            "permissions": ["projects.view_projectrender"],
+        }],
+        "finance": [{
+            "name": "Overdue Invoices",
+            "url": "/admin/finance/invoice/?status__exact=OVERDUE",
+            "icon": "fas fa-exclamation-triangle",
+            "permissions": ["finance.view_invoice"],
+        }],
+    },
+
+    # ── Icons (FontAwesome 5) ──
+    "icons": {
+        "auth": "fas fa-shield-alt",
+        "auth.group": "fas fa-users-cog",
+        "authentication": "fas fa-user-shield",
+        "authentication.user": "fas fa-user-circle",
+        "employees": "fas fa-hard-hat",
+        "employees.department": "fas fa-city",
+        "employees.designation": "fas fa-id-card-alt",
+        "employees.employee": "fas fa-user-tie",
+        "employees.attendance": "fas fa-calendar-check",
+        "employees.payroll": "fas fa-money-check-alt",
+        "customers": "fas fa-handshake",
+        "customers.customer": "fas fa-address-book",
+        "customers.communicationlog": "fas fa-comments",
+        "customers.customerreview": "fas fa-star-half-alt",
+        "projects": "fas fa-drafting-compass",
+        "projects.projectcategory": "fas fa-layer-group",
+        "projects.project": "fas fa-project-diagram",
+        "projects.projectmilestone": "fas fa-flag-checkered",
+        "projects.projectrender": "fas fa-images",
+        "finance": "fas fa-coins",
+        "finance.financialaccount": "fas fa-university",
+        "finance.expensecategory": "fas fa-tags",
+        "finance.invoice": "fas fa-file-invoice-dollar",
+        "finance.transaction": "fas fa-exchange-alt",
+        "reports": "fas fa-chart-pie",
+        "reports.savedreport": "fas fa-chart-line",
+    },
+    "default_icon_parents": "fas fa-folder-open",
+    "default_icon_children": "fas fa-angle-right",
+
+    # ── Forms & Modals ──
+    "related_modal_active": True,
+    "custom_css": None,
+    "custom_js": None,
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+
+    # ── Change-form Layout ──
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "authentication.user": "collapsible",
+        "employees.employee": "horizontal_tabs",
+        "projects.project": "horizontal_tabs",
+        "finance.invoice": "horizontal_tabs",
+        "auth.group": "vertical_tabs",
+    },
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark navbar-navy",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "default",
+    "default_theme_mode": "auto",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+    "actions_sticky_top": True,
+}
+
 

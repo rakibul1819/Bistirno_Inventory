@@ -82,6 +82,21 @@ class Attendance(TimeStampedUUIDModel):
     class Meta(TimeStampedUUIDModel.Meta):
         unique_together = ('employee', 'date')
 
+    @property
+    def working_hours(self):
+        if self.check_in and self.check_out:
+            import datetime
+            t1 = datetime.datetime.combine(datetime.date.today(), self.check_in)
+            t2 = datetime.datetime.combine(datetime.date.today(), self.check_out)
+            if t2 >= t1:
+                diff = t2 - t1
+            else:
+                diff = (t2 + datetime.timedelta(days=1)) - t1
+            hours = int(diff.total_seconds() // 3600)
+            mins = int((diff.total_seconds() % 3600) // 60)
+            return f"{hours}h {mins:02d}m"
+        return "—"
+
     def __str__(self):
         return f"{self.employee.full_name} - {self.date} ({self.status})"
 
@@ -119,14 +134,25 @@ class Payroll(TimeStampedUUIDModel):
     class Meta(TimeStampedUUIDModel.Meta):
         unique_together = ('employee', 'month', 'year')
 
+    @property
+    def total_earnings(self):
+        return (self.basic_salary or Decimal('0.00')) + (self.bonus or Decimal('0.00')) + (self.allowance or Decimal('0.00'))
+
+    @property
+    def total_deductions(self):
+        return (self.deductions or Decimal('0.00')) + (self.tax or Decimal('0.00'))
+
+    @property
+    def month_name(self):
+        months = ['', 'January', 'February', 'March', 'April', 'May', 'June',
+                  'July', 'August', 'September', 'October', 'November', 'December']
+        return months[self.month] if 1 <= self.month <= 12 else str(self.month)
+
     def calculate_net_salary(self):
-        total_earnings = self.basic_salary + self.bonus + self.allowance
-        total_deductions = self.deductions + self.tax
-        return total_earnings - total_deductions
+        return self.total_earnings - self.total_deductions
 
     def save(self, *args, **kwargs):
-        if not self.net_salary:
-            self.net_salary = self.calculate_net_salary()
+        self.net_salary = self.calculate_net_salary()
         super().save(*args, **kwargs)
 
     def __str__(self):

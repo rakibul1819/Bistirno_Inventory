@@ -11,7 +11,7 @@ const SEED_DATA = {
     phone: "+1 (555) 782-9000",
     address: "Level 14, Apex Tower, 450 Design District, New York, NY 10001",
     license: "AIA-NY-2024-9981",
-    currency: "$",
+    currency: "৳ ",
     timezone: "America/New_York",
     darkMode: true,
     adminProfile: {
