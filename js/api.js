@@ -63,20 +63,30 @@ class ApiClient {
   employees = {
     getAll: (params = {}) => {
       const query = new URLSearchParams(params).toString();
-      return this.request(`/employees${query ? `?${query}` : ""}`);
+      return this.request(`/employees/records/${query ? `?${query}` : ""}`);
     },
-    getById: (id) => this.request(`/employees/${id}`),
-    create: (data) => this.request("/employees", { method: "POST", body: JSON.stringify(data) }),
-    update: (id, data) => this.request(`/employees/${id}`, { method: "PUT", body: JSON.stringify(data) }),
-    updateAttendance: (id, status) => this.request(`/employees/${id}/attendance`, { method: "PATCH", body: JSON.stringify({ status }) }),
+    getById: (id) => this.request(`/employees/records/${id}/`),
+    create: (data) => this.request("/employees/records/", { method: "POST", body: JSON.stringify(data) }),
+    update: (id, data) => this.request(`/employees/records/${id}/`, { method: "PUT", body: JSON.stringify(data) }),
+    // Attendance
+    getAttendanceList: (params = {}) => {
+      const query = new URLSearchParams(params).toString();
+      return this.request(`/employees/attendance/${query ? `?${query}` : ""}`);
+    },
+    updateAttendance: (id, data) => this.request(`/employees/attendance/${id}/`, { method: "PATCH", body: JSON.stringify(data) }),
+    bulkMarkAttendance: (data) => this.request("/employees/attendance/bulk-mark/", { method: "POST", body: JSON.stringify(data) }),
     // Payroll
     getPayrollList: (params = {}) => {
       const query = new URLSearchParams(params).toString();
-      return this.request(`/employees/payroll/list${query ? `?${query}` : ""}`);
+      return this.request(`/employees/payroll/${query ? `?${query}` : ""}`);
     },
-    getSalarySlip: (id) => this.request(`/employees/payroll/${id}`),
-    generatePayroll: (data) => this.request("/employees/payroll/generate", { method: "POST", body: JSON.stringify(data) }),
-    markSalaryPaid: (id, paymentData = {}) => this.request(`/employees/payroll/${id}/pay`, { method: "PATCH", body: JSON.stringify(paymentData) }),
+    getSalarySlip: (id) => this.request(`/employees/payroll/${id}/`),
+    generatePayroll: (data) => this.request("/employees/payroll/generate-monthly/", { method: "POST", body: JSON.stringify(data) }),
+    markSalaryPaid: (id, paymentData = {}) => this.request(`/employees/payroll/${id}/disburse/`, { method: "POST", body: JSON.stringify(paymentData) }),
+    getMonthlyStatement: (params = {}) => {
+      const query = new URLSearchParams(params).toString();
+      return this.request(`/employees/payroll/monthly-statement/${query ? `?${query}` : ""}`);
+    },
   };
 
   // --- 3. Customer Management ---

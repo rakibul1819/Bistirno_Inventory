@@ -20,25 +20,34 @@ class DesignationSerializer(serializers.ModelSerializer):
 class AttendanceSerializer(serializers.ModelSerializer):
     employee_name = serializers.CharField(source='employee.full_name', read_only=True)
     employee_code = serializers.CharField(source='employee.employee_code', read_only=True)
+    working_hours = serializers.CharField(read_only=True)
 
     class Meta:
         model = Attendance
-        fields = ['id', 'employee', 'employee_name', 'employee_code', 'date', 'check_in', 'check_out', 'status', 'notes', 'created_at']
+        fields = [
+            'id', 'employee', 'employee_name', 'employee_code',
+            'date', 'check_in', 'check_out', 'working_hours',
+            'status', 'notes', 'created_at'
+        ]
 
 
 class PayrollSerializer(serializers.ModelSerializer):
     employee_name = serializers.CharField(source='employee.full_name', read_only=True)
     employee_code = serializers.CharField(source='employee.employee_code', read_only=True)
     department_name = serializers.CharField(source='employee.department.name', read_only=True)
+    total_earnings = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True)
+    total_deductions = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True)
+    month_name = serializers.CharField(read_only=True)
 
     class Meta:
         model = Payroll
         fields = [
             'id', 'payroll_code', 'employee', 'employee_name', 'employee_code', 'department_name',
-            'month', 'year', 'basic_salary', 'bonus', 'allowance', 'deductions', 'tax',
+            'month', 'month_name', 'year', 'basic_salary', 'bonus', 'allowance',
+            'total_earnings', 'deductions', 'tax', 'total_deductions',
             'net_salary', 'status', 'payment_method', 'paid_at', 'notes', 'created_at'
         ]
-        read_only_fields = ['id', 'net_salary', 'created_at']
+        read_only_fields = ['id', 'net_salary', 'total_earnings', 'total_deductions', 'month_name', 'created_at']
 
 
 class EmployeeSerializer(serializers.ModelSerializer):

@@ -56,19 +56,83 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
 
 class AttendanceViewSet(viewsets.ModelViewSet):
-    queryset = Attendance.objects.select_related('employee').all()
+    queryset = Attendance.objects.select_related('employee', 'employee__department').all()
     serializer_class = AttendanceSerializer
     permission_classes = [IsAdminOrManager]
     filterset_fields = ['date', 'status', 'employee']
     ordering_fields = ['date', 'check_in']
 
+    @action(detail=False, methods=['post'], url_path='bulk-mark')
+    def bulk_mark(self, request):
+        import datetime
+        date_str = request.data.get('date')
+        target_date = datetime.date.fromisoformat(date_str) if date_str else datetime.date.today()
+        status_val = request.data.get('status', Attendance.Status.PRESENT)
+        check_in = request.data.get('check_in', '09:00:00')
+        employee_ids = request.data.get('employee_ids', [])
+
+        if not employee_ids:
+            employees = Employee.objects.filter(status=Employee.Status.ACTIVE)
+        else:
+            employees = Employee.objects.filter(id__in=employee_ids)
+
+        records = []
+        for emp in employees:
+            att, created = Attendance.objects.get_or_create(
+                employee=emp,
+                date=target_date,
+                defaults={'status': status_val, 'check_in': check_in}
+            )
+            if not created:
+                att.status = status_val
+                if check_in and not att.check_in:
+                    att.check_in = check_in
+                att.save()
+            records.append(att)
+
+        return api_response(
+            success=True,
+            message=f"Attendance updated for {len(records)} employees on {target_date}.",
+            data=AttendanceSerializer(records, many=True).data
+        )
+
 
 class PayrollViewSet(viewsets.ModelViewSet):
-    queryset = Payroll.objects.select_related('employee', 'employee__department').all()
+    queryset = Payroll.objects.select_related('employee', 'employee__department', 'employee__designation').all()
     serializer_class = PayrollSerializer
     permission_classes = [IsAccountantOrAdmin]
     filterset_fields = ['month', 'year', 'status', 'employee']
     search_fields = ['payroll_code', 'employee__first_name', 'employee__last_name', 'employee__employee_code']
+
+    @action(detail=False, methods=['get'], url_path='monthly-statement')
+    def monthly_statement(self, request):
+        month = request.query_params.get('month')
+        year = request.query_params.get('year')
+        qs = self.get_queryset()
+        if month:
+            qs = qs.filter(month=month)
+        if year:
+            qs = qs.filter(year=year)
+
+        total_payout = sum(p.net_salary for p in qs)
+        total_tax = sum(p.tax for p in qs)
+        total_bonus = sum(p.bonus for p in qs)
+        paid_count = qs.filter(status=Payroll.PaymentStatus.PAID).count()
+        pending_count = qs.filter(status=Payroll.PaymentStatus.PENDING).count()
+
+        return api_response(
+            success=True,
+            message="Monthly salary statement retrieved.",
+            data={
+                'total_records': qs.count(),
+                'total_payout': float(total_payout),
+                'total_tax': float(total_tax),
+                'total_bonus': float(total_bonus),
+                'paid_count': paid_count,
+                'pending_count': pending_count,
+                'records': PayrollSerializer(qs, many=True).data
+            }
+        )
 
     @action(detail=False, methods=['post'], url_path='generate-monthly')
     def generate_monthly(self, request):

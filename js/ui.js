@@ -356,7 +356,7 @@ class UIRenderer {
   // --- 2. PROJECTS MANAGEMENT VIEW ---
   renderProjects() {
     const projects = window.store.getProjects();
-    const curr = window.store.getSettings().currency || "$";
+    const curr = window.store.getSettings().currency || "৳ ";
 
     return `
       <!-- Header -->
@@ -1171,7 +1171,7 @@ class UIRenderer {
   // --- 5. SALARY & PAYROLL MANAGEMENT VIEW ---
   renderSalaries() {
     const salaries = window.store.getSalaries();
-    const curr = window.store.getSettings().currency || "$";
+    const curr = window.store.getSettings().currency || "৳ ";
     const totalPaid = salaries.filter(s => s.status === "Paid").reduce((sum, s) => sum + Number(s.netSalary), 0);
     const pendingPaid = salaries.filter(s => s.status === "Pending").reduce((sum, s) => sum + Number(s.netSalary), 0);
 
@@ -1299,7 +1299,7 @@ class UIRenderer {
   // --- 6. CUSTOMER MANAGEMENT VIEW ---
   renderCustomers() {
     const customers = window.store.getCustomers();
-    const curr = window.store.getSettings().currency || "$";
+    const curr = window.store.getSettings().currency || "৳ ";
 
     return `
       <!-- Header -->
@@ -1404,7 +1404,7 @@ class UIRenderer {
   // --- 7. INVENTORY & MATERIAL MANAGEMENT VIEW ---
   renderInventory() {
     const inventory = window.store.getInventory();
-    const curr = window.store.getSettings().currency || "$";
+    const curr = window.store.getSettings().currency || "৳ ";
 
     return `
       <!-- Header -->
@@ -1517,7 +1517,7 @@ class UIRenderer {
   // --- 8. FINANCIAL MANAGEMENT VIEW ---
   renderFinancials() {
     const transactions = window.store.getTransactions();
-    const curr = window.store.getSettings().currency || "$";
+    const curr = window.store.getSettings().currency || "৳ ";
     const metrics = window.store.getDashboardMetrics();
 
     return `
